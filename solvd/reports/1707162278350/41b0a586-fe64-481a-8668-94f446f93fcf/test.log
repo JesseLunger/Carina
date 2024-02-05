@@ -1,6 +1,6 @@
-[2024-02-05 06:12:56] [1] [WARN] Reporting disabled: using no op test run registrar
-[2024-02-05 06:12:56] [1] [INFO] TEST [solvd - testGetUsers] STARTED at [10:12:56 2024-02-05]
-[2024-02-05 06:12:58] [1] [INFO] Request method:	GET
+[2024-02-05 07:44:40] [1] [WARN] Reporting disabled: using no op test run registrar
+[2024-02-05 07:44:40] [1] [INFO] TEST [solvd - testGetUsers] STARTED at [11:44:40 2024-02-05]
+[2024-02-05 07:44:42] [1] [INFO] Request method:	GET
 Request URI:	https://dummy.restapiexample.com/api/v1/employees
 Request params:	<none>
 Query params:	<none>
@@ -12,7 +12,7 @@ Headers:		Accept=*/*
 				Content-Type=application/json; charset=UTF-8
 Body:			<none>
 HTTP/1.1 200 OK
-Date: Mon, 05 Feb 2024 18:12:58 GMT
+Date: Mon, 05 Feb 2024 19:44:42 GMT
 Server: nginx/1.21.6
 Content-Type: application/json
 Content-Length: 636
@@ -20,7 +20,7 @@ Cache-Control: no-cache, private
 X-RateLimit-Limit: 60
 X-RateLimit-Remaining: 58
 Cache-Control: max-age=86400
-Expires: Tue, 06 Feb 2024 18:12:58 GMT
+Expires: Tue, 06 Feb 2024 19:44:42 GMT
 Vary: Accept-Encoding
 Content-Encoding: gzip
 X-Endurance-Cache-Level: 2
@@ -203,7 +203,7 @@ X-Proxy-Cache: MISS
     "message": "Successfully! All records has been fetched."
 }
 
-[2024-02-05 06:12:58] [1] [ERROR] TEST [solvd - testGetUsers] FAILED at [10:12:58 2024-02-05] - 
+[2024-02-05 07:44:42] [1] [ERROR] TEST [solvd - testGetUsers] FAILED at [11:44:42 2024-02-05] - 
 Expected: a JSON array
      got: a JSON object
 
@@ -212,6 +212,7 @@ org.skyscreamer.jsonassert.JSONAssert.assertEquals(JSONAssert.java:482)
 org.skyscreamer.jsonassert.JSONAssert.assertEquals(JSONAssert.java:464)
 com.zebrunner.carina.api.AbstractApiMethodV2.validateResponse(AbstractApiMethodV2.java:339)
 com.zebrunner.carina.api.AbstractApiMethodV2.validateResponse(AbstractApiMethodV2.java:299)
+com.zebrunner.carina.api.AbstractApiMethodV2.validateResponse(AbstractApiMethodV2.java:363)
 com.carina.demo.APISampleTest.testGetUsers(APISampleTest.java:67)
 java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 java.base/java.lang.reflect.Method.invoke(Method.java:580)
