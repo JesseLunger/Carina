@@ -1,10 +1,9 @@
-package com.carina.demo;
+package com.carina.tests;
 
 import java.lang.invoke.MethodHandles;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.zebrunner.carina.api.http.HttpResponseStatus;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +24,13 @@ import com.zebrunner.carina.core.registrar.tag.TestPriority;
  *
  * @author qpsdemo
  */
-public class APISampleTest implements IAbstractTest {
+public class APITest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
-    public void testCreateUser() throws Exception {
+    public void testCreateEmployeeWithRetry() throws Exception {
         LOGGER.info("test");
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
@@ -51,7 +50,7 @@ public class APISampleTest implements IAbstractTest {
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
-    public void testCreateUserMissingSomeFields() throws Exception {
+    public void testCreateEmployee() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
         api.callAPIExpectSuccess();
@@ -60,7 +59,7 @@ public class APISampleTest implements IAbstractTest {
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
-    public void testGetUsers() {
+    public void testGetEmployees() {
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.callAPIExpectSuccess();
         getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
@@ -70,7 +69,7 @@ public class APISampleTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
-    public void testDeleteUsers() {
+    public void testDeleteEmployee() {
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
         deleteUserMethod.setProperties("api/users/user.properties");
         deleteUserMethod.callAPIExpectSuccess();
@@ -80,11 +79,10 @@ public class APISampleTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
-    public void testPutUsers() {
+    public void testPutEmployee() {
         PostUserMethod postUserMethod = new PostUserMethod();
         postUserMethod.setProperties("api/users/user.properties");
         postUserMethod.callAPIExpectSuccess();
         postUserMethod.validateResponse();
     }
-
 }
