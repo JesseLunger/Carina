@@ -1,9 +1,8 @@
 [
   {
-    "id": 1,
     "employee_name": "test",
-    "employee_salary": "skip",
-    "employee_age": "skip",
-    "profile_image": "skip"
+    "employee_salary": 320800,
+    "employee_age": 61,
+    "profile_image": "${image}"
   }
 ]

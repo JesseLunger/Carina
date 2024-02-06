@@ -1,0 +1,55 @@
+[2024-02-06 04:00:33] [1] [WARN] Reporting disabled: using no op test run registrar
+[2024-02-06 04:00:33] [1] [INFO] TEST [solvd - testUpdateEmployee] STARTED at [20:00:33 2024-02-05]
+[2024-02-06 04:00:33] [1] [INFO] Base properties loaded: api/users/user.properties
+[2024-02-06 04:00:33] [1] [INFO] Base properties loaded: api/users/user.properties
+[2024-02-06 04:00:34] [1] [INFO] Request method:	POST
+Request URI:	https://dummy.restapiexample.com/api/v1/create
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Multiparts:		<none>
+Cookies:		<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Body:
+[
+    {
+        "employee_name": "jldkgjhp",
+        "employee_salary": 320800,
+        "employee_age": 61,
+        "profile_image": "mtstttno"
+    }
+]
+HTTP/1.1 200 OK
+Date: Tue, 06 Feb 2024 04:00:35 GMT
+Server: Apache
+Cache-Control: no-cache, private
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 58
+Upgrade: h2,h2c
+Connection: Upgrade
+Cache-Control: max-age=86400
+Expires: Wed, 07 Feb 2024 04:00:35 GMT
+Vary: Accept-Encoding
+Content-Encoding: gzip
+X-Endurance-Cache-Level: 2
+X-nginx-cache: WordPress
+Content-Length: 162
+Content-Type: application/json
+
+{
+    "status": "success",
+    "data": {
+        "0": {
+            "employee_name": "jldkgjhp",
+            "employee_salary": 320800,
+            "employee_age": 61,
+            "profile_image": "mtstttno"
+        },
+        "id": 1658
+    },
+    "message": "Successfully! Record has been added."
+}
+
+[2024-02-06 04:00:34] [1] [INFO] TEST [solvd - testUpdateEmployee] PASSED at [20:00:34 2024-02-05]

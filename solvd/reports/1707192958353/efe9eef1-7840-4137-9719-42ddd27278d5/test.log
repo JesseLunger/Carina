@@ -1,0 +1,93 @@
+[2024-02-06 04:16:00] [1] [WARN] Reporting disabled: using no op test run registrar
+[2024-02-06 04:16:00] [1] [INFO] TEST [solvd - testUpdateEmployee] STARTED at [20:16:00 2024-02-05]
+[2024-02-06 04:16:00] [1] [INFO] Base properties loaded: api/users/user.properties
+[2024-02-06 04:16:01] [1] [INFO] Base properties loaded: api/users/user.properties
+[2024-02-06 04:16:02] [1] [INFO] Request method:	POST
+Request URI:	https://dummy.restapiexample.com/api/v1/create
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Multiparts:		<none>
+Cookies:		<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Body:
+[
+    {
+        "employee_name": "test",
+        "employee_salary": 320800,
+        "employee_age": 61,
+        "profile_image": "bbfkddcg"
+    }
+]
+HTTP/1.1 200 OK
+Date: Tue, 06 Feb 2024 04:16:02 GMT
+Server: Apache
+Cache-Control: no-cache, private
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 58
+Upgrade: h2,h2c
+Connection: Upgrade
+Cache-Control: max-age=86400
+Expires: Wed, 07 Feb 2024 04:16:02 GMT
+Vary: Accept-Encoding
+Content-Encoding: gzip
+X-Endurance-Cache-Level: 2
+X-nginx-cache: WordPress
+Content-Length: 158
+Content-Type: application/json
+
+{
+    "status": "success",
+    "data": {
+        "0": {
+            "employee_name": "test",
+            "employee_salary": 320800,
+            "employee_age": 61,
+            "profile_image": "bbfkddcg"
+        },
+        "id": 1053
+    },
+    "message": "Successfully! Record has been added."
+}
+
+[2024-02-06 04:16:02] [1] [ERROR] TEST [solvd - testUpdateEmployee] FAILED at [20:16:02 2024-02-05] - data.0.employee_name
+Expected: $test
+     got: test
+ ; data.0.profile_image
+Expected: null
+     got: bbfkddcg
+
+
+org.skyscreamer.jsonassert.JSONAssert.assertEquals(JSONAssert.java:482)
+org.skyscreamer.jsonassert.JSONAssert.assertEquals(JSONAssert.java:464)
+com.zebrunner.carina.api.AbstractApiMethodV2.validateResponse(AbstractApiMethodV2.java:339)
+com.zebrunner.carina.api.AbstractApiMethodV2.validateResponse(AbstractApiMethodV2.java:299)
+com.zebrunner.carina.api.AbstractApiMethodV2.validateResponse(AbstractApiMethodV2.java:363)
+com.carina.tests.APITest.testUpdateEmployee(APITest.java:88)
+java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+java.base/java.lang.reflect.Method.invoke(Method.java:580)
+org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+org.testng.TestRunner.privateRun(TestRunner.java:829)
+org.testng.TestRunner.run(TestRunner.java:602)
+org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+org.testng.SuiteRunner.run(SuiteRunner.java:330)
+org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+org.testng.TestNG.runSuites(TestNG.java:1099)
+org.testng.TestNG.run(TestNG.java:1067)
+com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)

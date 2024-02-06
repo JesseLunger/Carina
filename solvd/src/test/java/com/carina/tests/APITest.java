@@ -19,17 +19,13 @@ import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 
-/**
- * This sample shows how create REST API tests.
- *
- * @author qpsdemo
- */
+
 public class APITest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "suiteOwner")
     public void testCreateEmployeeWithRetry() throws Exception {
         LOGGER.info("test");
         setCases("4555,54545");
@@ -49,7 +45,7 @@ public class APITest implements IAbstractTest {
     }
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "suiteOwner")
     public void testCreateEmployee() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
@@ -67,7 +63,7 @@ public class APITest implements IAbstractTest {
     }
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "suiteOwner")
     @TestPriority(Priority.P1)
     public void testDeleteEmployee() {
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
@@ -77,11 +73,13 @@ public class APITest implements IAbstractTest {
     }
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "suiteOwner")
     @TestPriority(Priority.P1)
-    public void testPutEmployee() {
+    public void testUpdateEmployee() {
         PostUserMethod postUserMethod = new PostUserMethod();
         postUserMethod.setProperties("api/users/user.properties");
+        postUserMethod.setRequestTemplate("api/users/_put/rq.json");
+        postUserMethod.setResponseTemplate("api/users/_put/rs.json");
         postUserMethod.callAPIExpectSuccess();
         postUserMethod.validateResponse();
     }
