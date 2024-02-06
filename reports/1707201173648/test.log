@@ -1,0 +1,19 @@
+[2024-02-06 06:32:53] [1] [INFO] 
+============= Basic configuration =============
+env=STAG
+=========== WebDriver configuration ===========
+localization_encoding=UTF-8
+language=en_US
+-------------- Driver capabilities ------------
+===============================================
+
+[2024-02-06 06:32:54] [1] [WARN] Reporting disabled: using no op test run registrar
+[2024-02-06 06:33:05] [1] [INFO] Use thread-count='10' from suite file.
+[2024-02-06 06:33:05] [1] [INFO] Set data-provider-thread-count=1
+[2024-02-06 06:33:05] [1] [INFO] CARINA_CORE_VERSION: 1.1.3
+[2024-02-06 06:33:17] [1] [INFO] INFO: '**************** Test execution summary ****************'.
+[2024-02-06 06:33:17] [1] [INFO] RESULT #1: TEST [User API tests - testUpdateEmployee] PASS [log=file:///mnt/c/Users/jesse/Desktop/solvdProjects/Carina/./reports/1707201173648/bcb2e5f1-7c94-48e2-9f1e-e517e97406f4/test.log]
+[2024-02-06 06:33:17] [1] [INFO] RESULT #2: TEST [User API tests - testDeleteEmployee] FAIL [log=file:///mnt/c/Users/jesse/Desktop/solvdProjects/Carina/./reports/1707201173648/83d0edd8-1f21-4a24-8fa2-ed0001a454e8/test.log]
+[2024-02-06 06:33:17] [1] [INFO] RESULT #3: TEST [User API tests - testCreateEmployee] FAIL [log=file:///mnt/c/Users/jesse/Desktop/solvdProjects/Carina/./reports/1707201173648/da9e0419-b1f5-4700-9523-c8ba972c2355/test.log]
+[2024-02-06 06:33:17] [1] [INFO] RESULT #4: TEST [User API tests - testGetEmployees] FAIL [log=file:///mnt/c/Users/jesse/Desktop/solvdProjects/Carina/./reports/1707201173648/955367d4-8771-4bc9-a365-b75e83a5b584/test.log]
+[2024-02-06 06:33:17] [1] [INFO] RESULT #5: TEST [User API tests - testCreateEmployeeWithRetry] FAIL [log=file:///mnt/c/Users/jesse/Desktop/solvdProjects/Carina/./reports/1707201173648/34bea1b3-75f6-4cc2-90c3-99e76c439aad/test.log]
