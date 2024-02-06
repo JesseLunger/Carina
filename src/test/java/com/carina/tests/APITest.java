@@ -4,15 +4,15 @@ import java.lang.invoke.MethodHandles;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.carina.methods.api.PostEmployeeMethod;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import com.zebrunner.carina.core.IAbstractTest;
-import com.carina.demo.api.DeleteUserMethod;
-import com.carina.demo.api.GetUserMethods;
-import com.carina.demo.api.PostUserMethod;
+import com.carina.methods.api.DeleteEmployeeMethod;
+import com.carina.methods.api.GetEmployeeMethods;
 import com.zebrunner.carina.api.APIMethodPoller;
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
@@ -29,8 +29,8 @@ public class APITest implements IAbstractTest {
     public void testCreateEmployeeWithRetry() throws Exception {
         LOGGER.info("test");
         setCases("4555,54545");
-        PostUserMethod api = new PostUserMethod();
-        api.setProperties("api/users/user.properties");
+        PostEmployeeMethod api = new PostEmployeeMethod();
+        api.setProperties("api/employee/employee.properties");
 
         AtomicInteger counter = new AtomicInteger(0);
 
@@ -47,40 +47,40 @@ public class APITest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "suiteOwner")
     public void testCreateEmployee() throws Exception {
-        PostUserMethod api = new PostUserMethod();
-        api.setProperties("api/users/user.properties");
+        PostEmployeeMethod api = new PostEmployeeMethod();
+        api.setProperties("api/employee/employee.properties");
         api.callAPIExpectSuccess();
         api.validateResponse();
     }
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "suiteOwner")
     public void testGetEmployees() {
-        GetUserMethods getUsersMethods = new GetUserMethods();
+        GetEmployeeMethods getUsersMethods = new GetEmployeeMethods();
         getUsersMethods.callAPIExpectSuccess();
         getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getUsersMethods.validateResponseAgainstSchema("api/users/_get/rs.schema");
+        getUsersMethods.validateResponseAgainstSchema("api/employee/_get/rs.schema");
     }
 
     @Test()
     @MethodOwner(owner = "suiteOwner")
     @TestPriority(Priority.P1)
     public void testDeleteEmployee() {
-        DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
-        deleteUserMethod.setProperties("api/users/user.properties");
-        deleteUserMethod.callAPIExpectSuccess();
-        deleteUserMethod.validateResponse();
+        DeleteEmployeeMethod deleteEmployeeMethod = new DeleteEmployeeMethod();
+        deleteEmployeeMethod.setProperties("api/employee/employee.properties");
+        deleteEmployeeMethod.callAPIExpectSuccess();
+        deleteEmployeeMethod.validateResponse();
     }
 
     @Test()
     @MethodOwner(owner = "suiteOwner")
     @TestPriority(Priority.P1)
     public void testUpdateEmployee() {
-        PostUserMethod postUserMethod = new PostUserMethod();
-        postUserMethod.setProperties("api/users/user.properties");
-        postUserMethod.setRequestTemplate("api/users/_put/rq.json");
-        postUserMethod.setResponseTemplate("api/users/_put/rs.json");
-        postUserMethod.callAPIExpectSuccess();
-        postUserMethod.validateResponse();
+        PostEmployeeMethod postEmployeeMethod = new PostEmployeeMethod();
+        postEmployeeMethod.setProperties("api/employee/employee.properties");
+        postEmployeeMethod.setRequestTemplate("api/employee/_put/rq.json");
+        postEmployeeMethod.setResponseTemplate("api/employee/_put/rs.json");
+        postEmployeeMethod.callAPIExpectSuccess();
+        postEmployeeMethod.validateResponse();
     }
 }
