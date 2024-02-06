@@ -87,6 +87,4 @@ public class APISampleTest implements IAbstractTest {
         postUserMethod.validateResponse();
     }
 
-
-
 }
