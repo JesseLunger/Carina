@@ -24,21 +24,6 @@
 		<suite>helloWorld</suite>
 	</properties>
 
-	<repositories>
-		<!-- Uncomment only for testing any SNAPSHOT version of carina or zebrunner agent! -->
-		<!--repository>
-			<id>zebrunner_snapshots</id>
-			<name>zebrunner Snapshots</name>
-			<url>https://nexus.zebrunner.dev/repository/ce-snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository-->
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.zebrunner</groupId>
@@ -75,7 +60,6 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.30</version>
 		</dependency>
-		<!-- Log4j2 -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -88,8 +72,6 @@
 		</dependency>
 
 		<dependency>
-			<!--we need it to reuse benefits of zebrunner testng agent for webdriver
-				sesssion(s) declaration -->
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy</artifactId>
 			<version>1.12.18</version>
@@ -103,6 +85,11 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.32</version>
 		</dependency>
 	</dependencies>
 

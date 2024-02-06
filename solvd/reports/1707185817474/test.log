@@ -1,0 +1,25 @@
+[2024-02-06 02:16:57] [1] [INFO] 
+============= Basic configuration =============
+env=DEMO
+=========== Encryptor configuration ===========
+crypto_key_value=*****
+=========== WebDriver configuration ===========
+url=https://www.gsmarena.com
+auto_screenshot=true
+localization_encoding=UTF-8
+language=en_US
+-------------- Driver capabilities ------------
+===============================================
+
+[2024-02-06 02:16:57] [1] [WARN] Reporting disabled: using no op test run registrar
+[2024-02-06 02:16:59] [1] [INFO] [TestNG] Running:
+  C:\Users\jesse\AppData\Local\JetBrains\IdeaIC2023.3\temp-testng-customsuite.xml
+
+[2024-02-06 02:16:59] [1] [INFO] Set thread-count=1
+[2024-02-06 02:16:59] [1] [INFO] Set data-provider-thread-count=1
+[2024-02-06 02:16:59] [1] [INFO] CARINA_CORE_VERSION: 1.1.3
+[2024-02-06 02:17:03] [1] [INFO] INFO: '**************** Test execution summary ****************'.
+[2024-02-06 02:17:03] [1] [INFO] RESULT #1: TEST [solvd - testCreateUserMissingSomeFields] PASS [log=file://C:\Users\jesse\Desktop\Solvd\projects\Carina\solvd\.\reports\1707185817474/23dd892e-3631-4d70-aae9-d6f72cd146f7/test.log]
+[2024-02-06 02:17:03] [1] [INFO] RESULT #2: TEST [solvd - testDeleteUsers] FAIL [log=file://C:\Users\jesse\Desktop\Solvd\projects\Carina\solvd\.\reports\1707185817474/c62b0011-f52f-41c4-a70e-39b7033d4286/test.log]
+[2024-02-06 02:17:03] [1] [INFO] RESULT #3: TEST [solvd - testGetUsers] FAIL [log=file://C:\Users\jesse\Desktop\Solvd\projects\Carina\solvd\.\reports\1707185817474/47d149f2-0efc-4989-abc6-4a8c75136d1c/test.log]
+[2024-02-06 02:17:03] [1] [INFO] RESULT #4: TEST [solvd - testPutUsers] FAIL [log=file://C:\Users\jesse\Desktop\Solvd\projects\Carina\solvd\.\reports\1707185817474/a5efc74f-4481-48d5-a794-edbed504409d/test.log]

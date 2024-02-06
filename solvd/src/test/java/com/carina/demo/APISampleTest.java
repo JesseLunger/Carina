@@ -4,6 +4,7 @@ import java.lang.invoke.MethodHandles;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.zebrunner.carina.api.http.HttpResponseStatus;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,8 +54,6 @@ public class APISampleTest implements IAbstractTest {
     public void testCreateUserMissingSomeFields() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
-        api.getProperties().remove("name");
-        api.getProperties().remove("username");
         api.callAPIExpectSuccess();
         api.validateResponse();
     }
@@ -64,8 +63,7 @@ public class APISampleTest implements IAbstractTest {
     public void testGetUsers() {
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.callAPIExpectSuccess();
-        getUsersMethods.validateResponse();
-//        getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
+        getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getUsersMethods.validateResponseAgainstSchema("api/users/_get/rs.schema");
     }
 
@@ -78,5 +76,17 @@ public class APISampleTest implements IAbstractTest {
         deleteUserMethod.callAPIExpectSuccess();
         deleteUserMethod.validateResponse();
     }
+
+    @Test()
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P1)
+    public void testPutUsers() {
+        PostUserMethod postUserMethod = new PostUserMethod();
+        postUserMethod.setProperties("api/users/user.properties");
+        postUserMethod.callAPIExpectSuccess();
+        postUserMethod.validateResponse();
+    }
+
+
 
 }
