@@ -1,0 +1,20 @@
+[2024-02-06 03:10:47] [1] [INFO] 
+============= Basic configuration =============
+env=DEMO
+=========== WebDriver configuration ===========
+url=https://www.gsmarena.com
+localization_encoding=UTF-8
+language=en_US
+-------------- Driver capabilities ------------
+===============================================
+
+[2024-02-06 03:10:48] [1] [WARN] Reporting disabled: using no op test run registrar
+[2024-02-06 03:10:55] [1] [INFO] Use thread-count='5' from suite file.
+[2024-02-06 03:10:55] [1] [INFO] Set data-provider-thread-count=1
+[2024-02-06 03:10:55] [1] [INFO] CARINA_CORE_VERSION: 1.1.3
+[2024-02-06 03:11:03] [1] [INFO] INFO: '**************** Test execution summary ****************'.
+[2024-02-06 03:11:03] [1] [INFO] RESULT #1: TEST [User API tests - testCreateUserMissingSomeFields] PASS [log=file:///mnt/c/Users/jesse/Desktop/Solvd/projects/Carina/solvd/./reports/1707189047899/464c6207-1f82-4769-8639-5fb51225b611/test.log]
+[2024-02-06 03:11:03] [1] [INFO] RESULT #2: TEST [User API tests - testDeleteUsers] FAIL [log=file:///mnt/c/Users/jesse/Desktop/Solvd/projects/Carina/solvd/./reports/1707189047899/0ae58e24-c2ea-4262-a9d5-3cb980dff8a8/test.log]
+[2024-02-06 03:11:03] [1] [INFO] RESULT #3: TEST [User API tests - testPutUsers] FAIL [log=file:///mnt/c/Users/jesse/Desktop/Solvd/projects/Carina/solvd/./reports/1707189047899/a10f7d30-3e27-4273-a054-aeaab284833e/test.log]
+[2024-02-06 03:11:03] [1] [INFO] RESULT #4: TEST [User API tests - testGetUsers] FAIL [log=file:///mnt/c/Users/jesse/Desktop/Solvd/projects/Carina/solvd/./reports/1707189047899/5d061d39-b934-499d-b753-754391b40d4a/test.log]
+[2024-02-06 03:11:03] [1] [INFO] RESULT #5: TEST [User API tests - testCreateUser] FAIL [log=file:///mnt/c/Users/jesse/Desktop/Solvd/projects/Carina/solvd/./reports/1707189047899/52bcd68a-2483-49f4-9949-550794c37db2/test.log]
