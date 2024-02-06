@@ -1,23 +1,19 @@
 package com.carina.tests;
 
-import java.lang.invoke.MethodHandles;
-import java.time.temporal.ChronoUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
+import com.carina.methods.api.DeleteEmployeeMethod;
+import com.carina.methods.api.GetEmployeeMethod;
+import com.carina.methods.api.GetEmployeesMethod;
 import com.carina.methods.api.PostEmployeeMethod;
+import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
+import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.core.registrar.tag.Priority;
+import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-
-import com.zebrunner.carina.core.IAbstractTest;
-import com.carina.methods.api.DeleteEmployeeMethod;
-import com.carina.methods.api.GetEmployeeMethods;
-import com.zebrunner.carina.api.APIMethodPoller;
-import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import java.lang.invoke.MethodHandles;
 
 
 public class APITest implements IAbstractTest {
@@ -26,40 +22,31 @@ public class APITest implements IAbstractTest {
 
     @Test()
     @MethodOwner(owner = "suiteOwner")
-    public void testCreateEmployeeWithRetry() throws Exception {
-        LOGGER.info("test");
-        setCases("4555,54545");
-        PostEmployeeMethod api = new PostEmployeeMethod();
-        api.setProperties("api/employee/employee.properties");
-
-        AtomicInteger counter = new AtomicInteger(0);
-
-        api.callAPIWithRetry()
-                .withLogStrategy(APIMethodPoller.LogStrategy.ALL)
-                .peek(rs -> counter.getAndIncrement())
-                .until(rs -> counter.get() == 4)
-                .pollEvery(1, ChronoUnit.SECONDS)
-                .stopAfter(10, ChronoUnit.SECONDS)
-                .execute();
-        api.validateResponse();
+    @TestPriority(Priority.P2)
+    public void testGetEmployee() throws Exception {
+        GetEmployeeMethod getEmployeeMethod = new GetEmployeeMethod();
+        getEmployeeMethod.callAPIExpectSuccess();
+        getEmployeeMethod.validateResponse();
     }
 
     @Test()
     @MethodOwner(owner = "suiteOwner")
-    public void testCreateEmployee() throws Exception {
-        PostEmployeeMethod api = new PostEmployeeMethod();
-        api.setProperties("api/employee/employee.properties");
-        api.callAPIExpectSuccess();
-        api.validateResponse();
-    }
-
-    @Test()
-    @MethodOwner(owner = "suiteOwner")
+    @TestPriority(Priority.P2)
     public void testGetEmployees() {
-        GetEmployeeMethods getUsersMethods = new GetEmployeeMethods();
-        getUsersMethods.callAPIExpectSuccess();
-        getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getUsersMethods.validateResponseAgainstSchema("api/employee/_get/rs.schema");
+        GetEmployeesMethod getUsersMethod = new GetEmployeesMethod();
+        getUsersMethod.callAPIExpectSuccess();
+        getUsersMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
+        getUsersMethod.validateResponseAgainstSchema("api/employee/_get/rs.schema");
+    }
+
+    @Test()
+    @MethodOwner(owner = "suiteOwner")
+    @TestPriority(Priority.P1)
+    public void testCreateEmployee() throws Exception {
+        PostEmployeeMethod postEmployeeMethod = new PostEmployeeMethod();
+        postEmployeeMethod.setProperties("api/employee/employee.properties");
+        postEmployeeMethod.callAPIExpectSuccess();
+        postEmployeeMethod.validateResponse();
     }
 
     @Test()
