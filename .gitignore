@@ -19,4 +19,5 @@ target
 .idea
 .metadata
 reports
-
+selenium-server-4.17.0.jar
+chromedriver.exe
