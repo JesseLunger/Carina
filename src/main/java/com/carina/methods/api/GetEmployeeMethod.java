@@ -10,7 +10,7 @@ import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
 @Endpoint(url = "${base_url}/api/v1/employee/1", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/employee/_get/rs2.json")
+@ResponseTemplatePath(path = "api/employee/_get/get_single_rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetEmployeeMethod extends AbstractApiMethodV2 {
 
