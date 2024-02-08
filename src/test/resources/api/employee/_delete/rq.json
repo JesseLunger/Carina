@@ -1,0 +1,9 @@
+[
+  {
+    "id": 2,
+    "employee_name": "${name}",
+    "employee_salary": 320800,
+    "employee_age": 61,
+    "profile_image": "${image}"
+  }
+]
