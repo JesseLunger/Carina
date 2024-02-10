@@ -1,8 +1,7 @@
 package com.carina.methods.mobile.gui.demoblaze.components;
 
-import com.zebrunner.carina.api.AbstractApiMethodV2;
+import com.carina.methods.mobile.gui.demoblaze.pages.HomePage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -31,19 +30,8 @@ public class LoginMenu extends AbstractUIObject {
         passwordField.type(password);
     }
 
-    public void clickLogIn(){
+    public HomePage clickLogInButton(){
         loginButton.click();
-    }
-
-    public ExtendedWebElement getUsernameField() {
-        return usernameField;
-    }
-
-    public ExtendedWebElement getPasswordField() {
-        return passwordField;
-    }
-
-    public ExtendedWebElement getLoginButton() {
-        return loginButton;
+        return new HomePage(getDriver());
     }
 }

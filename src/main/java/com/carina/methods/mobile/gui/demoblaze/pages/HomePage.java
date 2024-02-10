@@ -10,19 +10,19 @@ import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 
-import java.time.Duration;
 import java.util.List;
 
-public class LandingPage extends AbstractPage {
+public class HomePage extends AbstractPage {
 
-    @FindBy (xpath = "//a[@id=\"nameofuser\"]")
-    private ExtendedWebElement WelcomeUserName;
+    @FindBy (xpath = "//a[@id='nameofuser']")
+    private ExtendedWebElement welcomeUserName;
 
     @FindBy(xpath = "//a[@id='login2']")
     private ExtendedWebElement loginHeaderOption;
+
+    @FindBy(xpath = "//h5 [@id='logInModalLabel']")
+    private ExtendedWebElement logInMenuHeader;
 
     @FindBy(xpath = "//a [contains(text(), 'About us')]")
     private ExtendedWebElement aboutUsHeaderOption;
@@ -36,7 +36,7 @@ public class LandingPage extends AbstractPage {
     @FindBy(xpath = "//a [@id= 'cartur']")
     private ExtendedWebElement cartHeaderOption;
 
-    public LandingPage(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(loginHeaderOption);
@@ -44,33 +44,31 @@ public class LandingPage extends AbstractPage {
     }
 
     public LoginMenu clickSignInHeader(){
-        Utils.waitForElementVisible(getDriver(), loginHeaderOption);
+        Utils.waitForElementVisible(getDriver(), loginHeaderOption, false);
         loginHeaderOption.click();
+        Utils.waitForElementVisible(getDriver(), logInMenuHeader, false);
         return new LoginMenu(getDriver());
     }
 
     public CartPage clickCart(){
-        Utils.waitForElementVisible(getDriver(), cartHeaderOption);
+        Utils.waitForElementVisible(getDriver(), cartHeaderOption, false);
         cartHeaderOption.click();
         return new CartPage(getDriver());
     }
 
     public AboutUsVideo clickAboutUs(){
-        Utils.waitForElementVisible(getDriver(), aboutUsHeaderOption);
+        Utils.waitForElementVisible(getDriver(), aboutUsHeaderOption, false);
         aboutUsHeaderOption.click();
         return new AboutUsVideo(getDriver());
     }
 
-    public ExtendedWebElement getWelcomeUserName() {
-        return WelcomeUserName;
-    }
-
-    public ExtendedWebElement getLoginHeaderOption() {
-        return loginHeaderOption;
+    public Boolean welcomeUserVisible(){
+        Utils.waitForElementVisible(getDriver(), welcomeUserName, false);
+        return welcomeUserName.isVisible();
     }
 
     public List<ProductItem> getProducts() {
-        Utils.waitForElementVisible(getDriver(), gridCard);
+        Utils.waitForElementVisible(getDriver(), gridCard, false);
         return products;
     }
 }

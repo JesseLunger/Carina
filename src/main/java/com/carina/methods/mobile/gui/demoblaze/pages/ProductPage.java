@@ -1,12 +1,10 @@
 package com.carina.methods.mobile.gui.demoblaze.pages;
 
-import com.carina.methods.mobile.gui.demoblaze.components.PlaceOrderMenu;
 import com.carina.methods.mobile.gui.demoblaze.utils.Utils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ProductPage extends AbstractPage {
-
 
     @FindBy(xpath = "//a[contains(text(), 'Home')]")
     private ExtendedWebElement homeHeaderOption;
@@ -29,22 +26,20 @@ public class ProductPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='btn btn-success btn-lg']")
     private ExtendedWebElement addToCartButton;
 
-
-
     public ProductPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(productName);
     }
 
-    public LandingPage clickHomeInHeader(){
-        Utils.waitForElementVisible(getDriver(), homeHeaderOption);
+    public HomePage clickHomeInHeader(){
+        Utils.waitForElementVisible(getDriver(), homeHeaderOption, false);
         homeHeaderOption.click();
-        return new LandingPage(getDriver());
+        return new HomePage(getDriver());
     }
 
     public void clickAddToCart() {
-        Utils.waitForElementVisible(getDriver(), addToCartButton);
+        Utils.waitForElementVisible(getDriver(), addToCartButton, false);
         addToCartButton.click();
         new WebDriverWait(getDriver(), Duration.ofMillis(2000)).until(ExpectedConditions.alertIsPresent());
         Alert alert = getDriver().switchTo().alert();
@@ -52,10 +47,8 @@ public class ProductPage extends AbstractPage {
     }
 
     public CartPage clickCart(){
-        Utils.waitForElementVisible(getDriver(), cartHeaderOption);
+        Utils.waitForElementVisible(getDriver(), cartHeaderOption, false);
         cartHeaderOption.click();
         return new CartPage(getDriver());
     }
-
-    public ExtendedWebElement getHomeHeaderOption() { return homeHeaderOption; }
 }

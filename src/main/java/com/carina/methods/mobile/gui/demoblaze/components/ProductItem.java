@@ -20,12 +20,8 @@ public class ProductItem extends AbstractUIObject {
     }
 
     public ProductPage clickProduct(){
-        Utils.waitForElementVisible(getDriver(), productName);
+        Utils.waitForElementVisible(getDriver(), productName, false);
         productName.click();
         return new ProductPage(getDriver());
-    }
-
-    public WebElement getElement(){
-        return productName.getElement();
     }
 }

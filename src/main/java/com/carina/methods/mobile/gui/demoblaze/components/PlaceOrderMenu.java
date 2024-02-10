@@ -29,7 +29,7 @@ public class PlaceOrderMenu extends AbstractUIObject {
     @FindBy(xpath = "//button[@onclick ='purchaseOrder()']")
     private ExtendedWebElement submitButton;
 
-    @FindBy(xpath = "//div [@class=\"sa-placeholder\"]")
+    @FindBy(xpath = "//div [@class='sa-placeholder']")
     private ExtendedWebElement checkMark;
 
     public PlaceOrderMenu(WebDriver driver) {
@@ -60,12 +60,12 @@ public class PlaceOrderMenu extends AbstractUIObject {
         yearField.type(year);
     }
 
-    public void clickSubmit(){
+    public void clickSubmitButton(){
         submitButton.click();
     }
 
     public boolean checkMarkPresent(){
-        Utils.waitForElementVisible(getDriver(), checkMark);
+        Utils.waitForElementVisible(getDriver(), checkMark, false);
         return true;
     }
 }

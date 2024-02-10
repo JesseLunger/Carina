@@ -25,9 +25,11 @@ public class CartPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='tbodyid']//*[contains(@class, 'success')]")
     private List<CartItem> cartItems;
 
-    @FindBy(xpath = "//a [contains(text(), 'Delete')]")
-    private ExtendedWebElement deleteButton;
+    @FindBy(xpath = "//img[@width='100']")
+    private ExtendedWebElement cartItemImage;
 
+    @FindBy(xpath = "//button[@onclick ='purchaseOrder()']")
+    private ExtendedWebElement submitButton;
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -35,17 +37,15 @@ public class CartPage extends AbstractPage {
         setUiLoadedMarker(productsInCartTittle);
     }
 
-
     public PlaceOrderMenu clickPlaceOrder(){
-        Utils.waitForElementVisible(getDriver(), placeOrderButton);
+        Utils.waitForElementVisible(getDriver(), placeOrderButton, false);
         placeOrderButton.click();
-        Utils.waitForElementVisible(getDriver(), placeOrderHeader);
+        Utils.waitForElementVisible(getDriver(), submitButton, false);
         return new PlaceOrderMenu(getDriver());
     }
 
     public List<CartItem> getCartItems(){
-        Utils.waitForElementVisible(getDriver(), deleteButton);
+        Utils.waitForElementVisible(getDriver(), cartItemImage, true);
         return cartItems;
     }
-
 }

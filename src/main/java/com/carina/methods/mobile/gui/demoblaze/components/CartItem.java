@@ -1,6 +1,7 @@
 package com.carina.methods.mobile.gui.demoblaze.components;
 
 import com.carina.methods.api.PutEmployeeMethod;
+import com.carina.methods.mobile.gui.demoblaze.pages.CartPage;
 import com.carina.methods.mobile.gui.demoblaze.utils.Utils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
@@ -17,10 +18,10 @@ public class CartItem extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public void clickDeleteButton(){
-        Utils.waitForElementVisible(getDriver(), deleteButton);
+    public CartPage clickDeleteButton(){
+        Utils.waitForElementVisible(getDriver(), deleteButton, false);
         deleteButton.click();
-        Utils.waitForElementVisible(getDriver(), deleteButton);
+        Utils.waitForElementInvisible(getDriver(), deleteButton);
+        return new CartPage(getDriver());
     }
-
 }
