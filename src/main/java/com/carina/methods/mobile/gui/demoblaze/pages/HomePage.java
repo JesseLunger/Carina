@@ -15,11 +15,15 @@ import java.util.List;
 
 public class HomePage extends AbstractPage {
 
-    @FindBy (xpath = "//a[@id='nameofuser']")
-    private ExtendedWebElement welcomeUserName;
+
+    @FindBy(xpath = "//a[@href='prod.html?idp_=9']")
+    private ExtendedWebElement pageLoadedMarker;
 
     @FindBy(xpath = "//a[@id='login2']")
     private ExtendedWebElement loginHeaderOption;
+
+    @FindBy (xpath = "//a[@id='nameofuser']")
+    private ExtendedWebElement welcomeUserName;
 
     @FindBy(xpath = "//h5 [@id='logInModalLabel']")
     private ExtendedWebElement logInMenuHeader;
@@ -39,8 +43,9 @@ public class HomePage extends AbstractPage {
     public HomePage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(loginHeaderOption);
+        setUiLoadedMarker(pageLoadedMarker); //not working page
         setPageAbsoluteURL(R.CONFIG.get("url"));
+
     }
 
     public LoginMenu clickSignInHeader(){

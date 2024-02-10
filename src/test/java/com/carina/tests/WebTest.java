@@ -9,13 +9,12 @@ import com.zebrunner.carina.utils.R;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.Random;
 
 public class WebTest implements IAbstractTest {
 
     @Test
-    public void signInTest(){
+    public void testSignIn(){
         WebDriver webDriver = getDriver();
         HomePage homePage = new HomePage(webDriver);
         homePage.open();
@@ -29,7 +28,7 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
-    public void buySingleTest(){
+    public void testBuySingle(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened());
@@ -50,7 +49,7 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
-    public void addAllItemsToCartTest(){
+    public void testAddAllItemsToCart(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened());
@@ -68,7 +67,7 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
-    public void deleteAllItemsFromCartTest(){
+    public void testDeleteAllItemsFromCart(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened());
@@ -89,7 +88,7 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
-    public void PlayVideoTest(){
+    public void testPlayVideo(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened());
