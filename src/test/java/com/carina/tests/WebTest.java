@@ -38,14 +38,15 @@ public class WebTest implements IAbstractTest {
         CartPage cartPage = productPage.clickCart();
         PlaceOrderMenu placeOrderMenu = cartPage.clickPlaceOrder();
 
+        try{Thread.sleep(500);} catch (InterruptedException e){}
         placeOrderMenu.typeName("george");
         placeOrderMenu.typeCountry("US");
         placeOrderMenu.typeCity("TestyWebVille");
         placeOrderMenu.typeCardNumber("1111-1111-1111-1111");
         placeOrderMenu.typeMonth("03");
         placeOrderMenu.typeYear("2024");
-        placeOrderMenu.clickSubmitButton();
-        Assert.assertTrue(placeOrderMenu.checkMarkPresent(), "Order confirmation popup did not appear");
+        OrderConfrimation orderConfrimation = placeOrderMenu.clickSubmitButton();
+        Assert.assertTrue(orderConfrimation.checkMarkPresent(), "Order confirmation popup did not appear");
     }
 
     @Test
@@ -63,6 +64,7 @@ public class WebTest implements IAbstractTest {
             homePage = productPage.clickHomeInHeader();
         }
         CartPage cartPage = productPage.clickCart();
+        cartPage.waitForTotal();
         Assert.assertEquals(cartPage.getCartItems().size(), numProducts, "Number of items added does not match number in cart");
     }
 
@@ -81,6 +83,7 @@ public class WebTest implements IAbstractTest {
 
         int numItems = cartPage.getCartItems().size();
         for (int i = 0; i < numItems; i++){
+            try{Thread.sleep(500);} catch (InterruptedException e){}
             CartItem cartItem = cartPage.getCartItems().get(0);
             cartPage = cartItem.clickDeleteButton();
         }

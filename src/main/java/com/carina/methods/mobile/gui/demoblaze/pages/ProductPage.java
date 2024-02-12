@@ -1,6 +1,5 @@
 package com.carina.methods.mobile.gui.demoblaze.pages;
 
-import com.carina.methods.mobile.gui.demoblaze.utils.Utils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
@@ -33,13 +32,11 @@ public class ProductPage extends AbstractPage {
     }
 
     public HomePage clickHomeInHeader(){
-        Utils.waitForElementVisible(getDriver(), homeHeaderOption, false);
         homeHeaderOption.click();
         return new HomePage(getDriver());
     }
 
     public void clickAddToCart() {
-        Utils.waitForElementVisible(getDriver(), addToCartButton, false);
         addToCartButton.click();
         new WebDriverWait(getDriver(), Duration.ofMillis(2000)).until(ExpectedConditions.alertIsPresent());
         Alert alert = getDriver().switchTo().alert();
@@ -47,7 +44,6 @@ public class ProductPage extends AbstractPage {
     }
 
     public CartPage clickCart(){
-        Utils.waitForElementVisible(getDriver(), cartHeaderOption, false);
         cartHeaderOption.click();
         return new CartPage(getDriver());
     }

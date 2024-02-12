@@ -21,7 +21,6 @@ public class LoginMenu extends AbstractUIObject {
         super(driver);
     }
 
-
     public void typeUsername(String username){
         usernameField.type(username);
     }

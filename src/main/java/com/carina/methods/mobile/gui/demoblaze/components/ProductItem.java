@@ -1,7 +1,6 @@
 package com.carina.methods.mobile.gui.demoblaze.components;
 
 import com.carina.methods.mobile.gui.demoblaze.pages.ProductPage;
-import com.carina.methods.mobile.gui.demoblaze.utils.Utils;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
@@ -20,7 +19,6 @@ public class ProductItem extends AbstractUIObject {
     }
 
     public ProductPage clickProduct(){
-        Utils.waitForElementVisible(getDriver(), productName, false);
         productName.click();
         return new ProductPage(getDriver());
     }

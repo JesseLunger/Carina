@@ -3,7 +3,6 @@ package com.carina.methods.mobile.gui.demoblaze.pages;
 import com.carina.methods.mobile.gui.demoblaze.components.AboutUsVideo;
 import com.carina.methods.mobile.gui.demoblaze.components.LoginMenu;
 import com.carina.methods.mobile.gui.demoblaze.components.ProductItem;
-import com.carina.methods.mobile.gui.demoblaze.utils.Utils;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
@@ -14,7 +13,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class HomePage extends AbstractPage {
-
 
     @FindBy(xpath = "//a[@href='prod.html?idp_=9']")
     private ExtendedWebElement pageLoadedMarker;
@@ -49,31 +47,25 @@ public class HomePage extends AbstractPage {
     }
 
     public LoginMenu clickSignInHeader(){
-        Utils.waitForElementVisible(getDriver(), loginHeaderOption, false);
         loginHeaderOption.click();
-        Utils.waitForElementVisible(getDriver(), logInMenuHeader, false);
         return new LoginMenu(getDriver());
     }
 
     public CartPage clickCart(){
-        Utils.waitForElementVisible(getDriver(), cartHeaderOption, false);
         cartHeaderOption.click();
         return new CartPage(getDriver());
     }
 
     public AboutUsVideo clickAboutUs(){
-        Utils.waitForElementVisible(getDriver(), aboutUsHeaderOption, false);
         aboutUsHeaderOption.click();
         return new AboutUsVideo(getDriver());
     }
 
     public Boolean welcomeUserVisible(){
-        Utils.waitForElementVisible(getDriver(), welcomeUserName, false);
         return welcomeUserName.isVisible();
     }
 
     public List<ProductItem> getProducts() {
-        Utils.waitForElementVisible(getDriver(), gridCard, false);
         return products;
     }
 }

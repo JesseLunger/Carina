@@ -1,6 +1,5 @@
 package com.carina.methods.mobile.gui.demoblaze.components;
 
-import com.carina.methods.mobile.gui.demoblaze.utils.Utils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class AboutUsVideo extends AbstractUIObject {
-
 
     @FindBy(xpath = "//button[@title='Play Video']")
     private ExtendedWebElement playButton;
@@ -21,7 +19,6 @@ public class AboutUsVideo extends AbstractUIObject {
     }
 
     public void clickPlayButton(){
-        Utils.waitForElementVisible(getDriver(), playButton, false);
         playButton.click();
     }
 

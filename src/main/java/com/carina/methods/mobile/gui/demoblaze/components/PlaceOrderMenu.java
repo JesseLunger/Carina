@@ -1,6 +1,5 @@
 package com.carina.methods.mobile.gui.demoblaze.components;
 
-import com.carina.methods.mobile.gui.demoblaze.utils.Utils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.WebDriver;
@@ -28,9 +27,6 @@ public class PlaceOrderMenu extends AbstractUIObject {
 
     @FindBy(xpath = "//button[@onclick ='purchaseOrder()']")
     private ExtendedWebElement submitButton;
-
-    @FindBy(xpath = "//div [@class='sa-placeholder']")
-    private ExtendedWebElement checkMark;
 
     public PlaceOrderMenu(WebDriver driver) {
         super(driver);
@@ -60,12 +56,8 @@ public class PlaceOrderMenu extends AbstractUIObject {
         yearField.type(year);
     }
 
-    public void clickSubmitButton(){
+    public OrderConfrimation clickSubmitButton(){
         submitButton.click();
-    }
-
-    public boolean checkMarkPresent(){
-        Utils.waitForElementVisible(getDriver(), checkMark, false);
-        return true;
+        return new OrderConfrimation(getDriver());
     }
 }
