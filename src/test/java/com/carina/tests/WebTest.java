@@ -15,10 +15,9 @@ public class WebTest implements IAbstractTest {
 
     @Test
     public void testSignIn(){
-        WebDriver webDriver = getDriver();
-        HomePage homePage = new HomePage(webDriver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened());
+        Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
         LoginMenu loginMenu = homePage.clickSignInHeader();
         loginMenu.typeUsername(R.TESTDATA.get("user_name"));
@@ -31,7 +30,7 @@ public class WebTest implements IAbstractTest {
     public void testBuySingle(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened());
+        Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
         ProductPage productPage = homePage.getProducts().get(new Random().nextInt(homePage.getProducts().size())).clickProduct();
         productPage.clickAddToCart();
@@ -53,7 +52,7 @@ public class WebTest implements IAbstractTest {
     public void testAddAllItemsToCart(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened());
+        Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
         ProductPage productPage = new ProductPage(getDriver());
         int numProducts = homePage.getProducts().size();
@@ -72,7 +71,7 @@ public class WebTest implements IAbstractTest {
     public void testDeleteAllItemsFromCart(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened());
+        Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
         ProductPage productPage = homePage.getProducts().get(new Random().nextInt(homePage.getProducts().size())).clickProduct();
         productPage.clickAddToCart();
@@ -94,7 +93,7 @@ public class WebTest implements IAbstractTest {
     public void testPlayVideo(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened());
+        Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
         AboutUsVideo aboutUsVideo = homePage.clickAboutUs();
         aboutUsVideo.clickPlayButton();

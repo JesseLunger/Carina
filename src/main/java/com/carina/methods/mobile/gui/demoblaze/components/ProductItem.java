@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProductItem extends AbstractUIObject {
 
-    @FindBy(xpath = ".//img [@class= 'card-img-top img-fluid']")
+    @FindBy(xpath = "//h4 [@class='card-title']")
     private ExtendedWebElement productName;
 
     public ProductItem(WebDriver driver, SearchContext searchContext) {
