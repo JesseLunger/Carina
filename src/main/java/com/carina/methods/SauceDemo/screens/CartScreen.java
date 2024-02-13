@@ -19,6 +19,7 @@ public class CartScreen extends AbstractPage {
 
     public CartScreen(WebDriver driver) {
         super(driver);
+
     }
 
     public CheckoutScreen clickCheckoutButton(){

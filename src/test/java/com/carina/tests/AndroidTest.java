@@ -27,38 +27,50 @@ public class AndroidTest implements IAbstractTest {
         homeScreen.typeUsername("standard_user");
         homeScreen.typePassword("secret_sauce");
         ProductScreen productScreen = homeScreen.clickLoginButton();
-        Assert.assertTrue(productScreen.isOpen());
-
+        Assert.assertTrue(productScreen.isOpen(), "ProductScreen did not open");
     }
 
-    @Test
+    @Test(dependsOnMethods = "testLogin")
     @MethodOwner(owner = "suiteOwner")
-    @TestPriority(Priority.P2)
+    @TestPriority(Priority.P1)
     public void testAddToCart(){
         ProductScreen productScreen = new ProductScreen(getDriver());
+        Product product = productScreen.getProducts().get(0);
+        product.clickAddToCartButton();
+        product = new ProductScreen(getDriver()).getProducts().get(0);
+        Assert.assertTrue(product.hasBeenSelected(), "Product has not been selected");
+    }
 
-        for (Product product : productScreen.getProducts()) {
-            product.clickAddToCartButton();
-        }
+    @Test(dependsOnMethods = "testAddToCart")
+    @MethodOwner(owner = "suiteOwner")
+    @TestPriority(Priority.P1)
+    public void testItemsInCart(){
+        ProductScreen productScreen = new ProductScreen(getDriver());
+        CartScreen cartScreen = productScreen.clickCheckoutCartButton();
+        Assert.assertTrue((cartScreen.getProductInCart().size() == 1), "Order vs Cart size mismatch");
+    }
 
+    @Test(dependsOnMethods = "testItemsInCart")
+    @MethodOwner(owner = "suiteOwner")
+    @TestPriority(Priority.P1)
+    public void testCheckout(){
+        CartScreen cartScreen = new CartScreen(getDriver());
+        CheckoutScreen checkoutScreen = cartScreen.clickCheckoutButton();
+        checkoutScreen.typeFirstName("test");
+        checkoutScreen.typeLastName("guy");
+        checkoutScreen.typeZipCode("97555");
+        CheckoutOverviewScreen checkoutOverviewScreen = checkoutScreen.clickContinueButton();
+        Assert.assertTrue(checkoutOverviewScreen.isOpen(), "Checkout overview screen did not open");
 
     }
 
-
-
-//        CartScreen cartScreen = productScreen.clickCheckoutCartButton();
-////        CartScreen cartScreen = new CartScreen(getDriver());
-//        cartScreen.getProductInCart().get(0).clickRemoveButton();
-//        CheckoutScreen checkoutScreen = cartScreen.clickCheckoutButton();
-//        checkoutScreen.typeFirstName("test");
-//        checkoutScreen.typeLastName("guy");
-//        checkoutScreen.typeZipCode("97555");
-//        CheckoutOverviewScreen checkoutOverviewScreen = checkoutScreen.clickContinueButton();
-//        OrderConfirmationScreen orderConfirmationScreen = checkoutOverviewScreen.clickFinishButton();
-//        orderConfirmationScreen.clickBackToHomeButton();
-
-
-
-
-
+    @Test(dependsOnMethods = "testCheckout")
+    @MethodOwner(owner = "suiteOwner")
+    @TestPriority(Priority.P1)
+    public void testLogout(){
+        CheckoutOverviewScreen checkoutOverviewScreen = new CheckoutOverviewScreen(getDriver());
+        HamburgerMenuScreen hamburgerMenuScreen = checkoutOverviewScreen.clickHamburgerMenu();
+        HomeScreen homeScreen = hamburgerMenuScreen.clickLogoutButton();
+        Assert.assertTrue(homeScreen.isOpen(), "Home screen did not open");
+    }
 }

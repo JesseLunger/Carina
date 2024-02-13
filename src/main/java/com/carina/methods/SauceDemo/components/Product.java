@@ -9,12 +9,12 @@ import org.openqa.selenium.support.FindBy;
 public class Product extends AbstractUIObject {
 
     @FindBy(xpath = ".//android.widget.TextView[@content-desc='test-Item title']")
-    private ExtendedWebElement productTitle;
+    private ExtendedWebElement productName;
 
-    @FindBy(xpath = "(//android.widget.TextView[@text='ADD TO CART'])")
+    @FindBy(xpath = ".//android.widget.TextView[@text='ADD TO CART']")
     private ExtendedWebElement addToCartButton;
 
-    @FindBy(xpath = "//android.widget.TextView[@text='REMOVE']")
+    @FindBy(xpath = ".//android.widget.TextView[@text='REMOVE']")
     private ExtendedWebElement removeFromCartButton;
 
 
@@ -24,15 +24,15 @@ public class Product extends AbstractUIObject {
     }
 
     public void clickTitle(){
-        productTitle.click();
+        productName.click();
     }
 
     public void clickAddToCartButton(){
         addToCartButton.click();
     }
 
-    public void hasBeenSelected(){
-        removeFromCartButton.click();
+    public boolean hasBeenSelected(){
+        return removeFromCartButton.isElementPresent();
     }
 
 }

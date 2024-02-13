@@ -6,19 +6,19 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class OrderConfirmationScreen extends AbstractPage {
+public class HamburgerMenuScreen extends AbstractPage {
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-BACK HOME']")
-    private ExtendedWebElement backToHomeButton;
+    @FindBy(xpath = "//android.widget.TextView[@text='LOGOUT']")
+    private ExtendedWebElement logOutButton;
 
-    protected OrderConfirmationScreen(WebDriver driver) {
+    public HamburgerMenuScreen(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(backToHomeButton);
+        setUiLoadedMarker(logOutButton);
     }
 
-    public ProductScreen clickBackToHomeButton(){
-        backToHomeButton.click();
-        return new ProductScreen(getDriver());
+    public HomeScreen clickLogoutButton(){
+        logOutButton.click();
+        return new HomeScreen(getDriver());
     }
 }

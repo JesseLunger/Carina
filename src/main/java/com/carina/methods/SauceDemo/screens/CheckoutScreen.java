@@ -2,6 +2,7 @@ package com.carina.methods.SauceDemo.screens;
 
 import com.carina.methods.SauceDemo.components.ProductInCart;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -24,6 +25,8 @@ public class CheckoutScreen extends AbstractPage {
 
     public CheckoutScreen(WebDriver driver) {
         super(driver);
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(firstNameField);
     }
 
     public void typeFirstName(String firstName){
