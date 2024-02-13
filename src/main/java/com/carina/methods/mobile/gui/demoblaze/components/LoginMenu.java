@@ -1,6 +1,7 @@
 package com.carina.methods.mobile.gui.demoblaze.components;
 
 import com.carina.methods.mobile.gui.demoblaze.pages.HomePage;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.WebDriver;
