@@ -17,8 +17,6 @@ public class Product extends AbstractUIObject {
     @FindBy(xpath = ".//android.widget.TextView[@text='REMOVE']")
     private ExtendedWebElement removeFromCartButton;
 
-
-
     public Product(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -34,5 +32,4 @@ public class Product extends AbstractUIObject {
     public boolean hasBeenSelected(){
         return removeFromCartButton.isElementPresent();
     }
-
 }

@@ -45,6 +45,4 @@ public class CheckoutScreen extends AbstractPage {
         continueButton.click();
         return new CheckoutOverviewScreen(getDriver());
     }
-
-
 }

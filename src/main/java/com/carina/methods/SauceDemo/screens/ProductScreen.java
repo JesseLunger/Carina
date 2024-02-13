@@ -6,7 +6,6 @@ import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 
 public class ProductScreen extends AbstractPage {
@@ -26,7 +25,6 @@ public class ProductScreen extends AbstractPage {
         setUiLoadedMarker(productsScreenTitle);
     }
 
-
     public CartScreen clickCheckoutCartButton(){
         checkoutCartButton.click();
         return new CartScreen(getDriver());
@@ -36,9 +34,7 @@ public class ProductScreen extends AbstractPage {
         return productsScreenTitle.isElementPresent();
     }
 
-
     public List<Product> getProducts() {
         return products;
     }
-
 }

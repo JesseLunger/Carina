@@ -10,7 +10,6 @@ import java.util.List;
 
 public class CartScreen extends AbstractPage {
 
-
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-CHECKOUT']")
     private ExtendedWebElement checkoutButton;
 

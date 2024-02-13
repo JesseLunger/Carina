@@ -17,8 +17,6 @@ public class HomeScreen extends AbstractPage {
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-LOGIN\"]")
     private ExtendedWebElement loginButton;
 
-
-
     public HomeScreen(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
@@ -43,5 +41,4 @@ public class HomeScreen extends AbstractPage {
     public boolean isOpen(){
         return userNameField.isElementPresent();
     }
-
 }
