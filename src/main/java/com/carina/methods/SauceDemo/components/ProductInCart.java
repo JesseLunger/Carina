@@ -19,4 +19,6 @@ public class ProductInCart extends AbstractUIObject {
         removeButton.click();
     }
 
+    // //android.widget.TextView(@text=\'%s')/following-sibling::*[@content-desc='test-ADD TO CART']]
+
 }

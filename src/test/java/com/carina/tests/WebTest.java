@@ -4,6 +4,9 @@ import com.carina.methods.demoblaze.components.CartItem;
 import com.carina.methods.demoblaze.components.ProductItem;
 import com.carina.methods.demoblaze.pages.*;
 import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.core.registrar.tag.Priority;
+import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import com.zebrunner.carina.utils.R;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,6 +17,8 @@ import java.util.Random;
 public class WebTest implements IAbstractTest {
 
     @Test
+    @MethodOwner(owner = "Jesse Lunger")
+    @TestPriority(Priority.P1)
     public void testSignIn(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -27,6 +32,8 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
+    @MethodOwner(owner = "Jesse Lunger")
+    @TestPriority(Priority.P1)
     public void testBuySingle(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -49,6 +56,8 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
+    @MethodOwner(owner = "Jesse Lunger")
+    @TestPriority(Priority.P1)
     public void testAddAllItemsToCart() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -84,6 +93,8 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
+    @MethodOwner(owner = "Jesse Lunger")
+    @TestPriority(Priority.P1)
     public void testDeleteAllItemsFromCart(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -107,6 +118,8 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
+    @MethodOwner(owner = "Jesse Lunger")
+    @TestPriority(Priority.P1)
     public void testPlayVideo(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();

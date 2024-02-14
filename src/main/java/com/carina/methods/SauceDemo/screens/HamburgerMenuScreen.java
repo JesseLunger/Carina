@@ -1,24 +1,25 @@
 package com.carina.methods.SauceDemo.screens;
 
+import com.carina.methods.SauceDemo.commons.HamburgerMenuBaseScreen;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class HamburgerMenuScreen extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HamburgerMenuBaseScreen.class)
+public class HamburgerMenuScreen extends HamburgerMenuBaseScreen{
 
     @FindBy(xpath = "//android.widget.TextView[@text='LOGOUT']")
     private ExtendedWebElement logOutButton;
 
     public HamburgerMenuScreen(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(logOutButton);
     }
 
-    public HomeScreen clickLogoutButton(){
+    @Override
+    public LoginScreen clickLogoutButton(){
         logOutButton.click();
-        return new HomeScreen(getDriver());
+        return new LoginScreen(getDriver());
     }
 }

@@ -21,10 +21,10 @@ public class AndroidTest implements IAbstractTest {
     @MethodOwner(owner = "suiteOwner")
     @TestPriority(Priority.P1)
     public void testLogin() {
-        HomeScreen homeScreen = new HomeScreen(getDriver());
-        homeScreen.typeUsername("standard_user");
-        homeScreen.typePassword("secret_sauce");
-        ProductScreen productScreen = homeScreen.clickLoginButton();
+        LoginScreen loginScreen = new LoginScreen(getDriver());
+        loginScreen.typeUsername("standard_user");
+        loginScreen.typePassword("secret_sauce");
+        ProductScreen productScreen = loginScreen.clickLoginButton();
         Assert.assertTrue(productScreen.isOpen(), "ProductScreen did not open");
     }
 
@@ -68,7 +68,7 @@ public class AndroidTest implements IAbstractTest {
     public void testLogout(){
         CheckoutOverviewScreen checkoutOverviewScreen = new CheckoutOverviewScreen(getDriver());
         HamburgerMenuScreen hamburgerMenuScreen = checkoutOverviewScreen.clickHamburgerMenu();
-        HomeScreen homeScreen = hamburgerMenuScreen.clickLogoutButton();
-        Assert.assertTrue(homeScreen.isOpen(), "Home screen did not open");
+        LoginScreen loginScreen = hamburgerMenuScreen.clickLogoutButton();
+        Assert.assertTrue(loginScreen.isOpen(), "Home screen did not open");
     }
 }

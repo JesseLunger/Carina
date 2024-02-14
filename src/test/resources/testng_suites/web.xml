@@ -5,11 +5,11 @@
         <classes>
             <class name="com.carina.tests.APITest">
                 <methods>
-                    <include name="testGetEmployee"/>
-                    <include name="testGetEmployees"/>
-                    <include name="testCreateEmployee"/>
-                    <include name="testDeleteEmployee"/>
-                    <include name="testUpdateEmployee"/>
+                    <include name="testSignIn"/>
+                    <include name="testBuySingle"/>
+                    <include name="testAddAllItemsToCart"/>
+                    <include name="testDeleteAllItemsFromCart"/>
+                    <include name="testPlayVideo"/>
                 </methods>
             </class>
         </classes>
