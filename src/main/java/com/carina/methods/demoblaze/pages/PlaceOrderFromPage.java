@@ -1,11 +1,11 @@
-package com.carina.methods.mobile.gui.demoblaze.components;
+package com.carina.methods.demoblaze.pages;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class PlaceOrderMenu extends AbstractUIObject {
+public class PlaceOrderFromPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@id='name']")
     private ExtendedWebElement nameField;
@@ -28,7 +28,7 @@ public class PlaceOrderMenu extends AbstractUIObject {
     @FindBy(xpath = "//button[@onclick ='purchaseOrder()']")
     private ExtendedWebElement submitButton;
 
-    public PlaceOrderMenu(WebDriver driver) {
+    public PlaceOrderFromPage(WebDriver driver) {
         super(driver);
     }
 
@@ -56,8 +56,8 @@ public class PlaceOrderMenu extends AbstractUIObject {
         yearField.type(year);
     }
 
-    public OrderConfrimation clickSubmitButton(){
+    public OrderConfrimationPage clickSubmitButton(){
         submitButton.click();
-        return new OrderConfrimation(getDriver());
+        return new OrderConfrimationPage(getDriver());
     }
 }

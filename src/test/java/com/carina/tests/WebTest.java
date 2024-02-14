@@ -1,14 +1,14 @@
 package com.carina.tests;
 
-import com.carina.methods.mobile.gui.demoblaze.components.*;
-import com.carina.methods.mobile.gui.demoblaze.pages.CartPage;
-import com.carina.methods.mobile.gui.demoblaze.pages.HomePage;
-import com.carina.methods.mobile.gui.demoblaze.pages.ProductPage;
+import com.carina.methods.demoblaze.components.CartItem;
+import com.carina.methods.demoblaze.components.ProductItem;
+import com.carina.methods.demoblaze.pages.*;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.utils.R;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import java.util.Random;
 
 public class WebTest implements IAbstractTest {
@@ -19,11 +19,11 @@ public class WebTest implements IAbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
-        LoginMenu loginMenu = homePage.clickSignInHeader();
-        loginMenu.typeUsername(R.TESTDATA.get("user_name"));
-        loginMenu.typePassword(R.TESTDATA.get("password"));
-        homePage = loginMenu.clickLogInButton();
-        Assert.assertTrue(homePage.welcomeUserVisible(), "Welcome user element in header is not visible");
+        LoginMenuPage loginMenuPage = homePage.clickSignInHeader();
+        loginMenuPage.typeUsername(R.TESTDATA.get("user_name"));
+        loginMenuPage.typePassword(R.TESTDATA.get("password"));
+        homePage = loginMenuPage.clickLogInButton();
+        Assert.assertEquals("Welcome " + R.TESTDATA.get("user_name"), homePage.getUserName(), "Welcome user element in header is not visible");
     }
 
     @Test
@@ -31,40 +31,56 @@ public class WebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
-
-        ProductPage productPage = homePage.getProducts().get(new Random().nextInt(homePage.getProducts().size())).clickProduct();
+        int randomIndex = new Random().nextInt(homePage.getProducts().size());
+        ProductPage productPage = homePage.getProducts().get(randomIndex).clickProduct();
         productPage.clickAddToCart();
         CartPage cartPage = productPage.clickCart();
-        PlaceOrderMenu placeOrderMenu = cartPage.clickPlaceOrder();
+        PlaceOrderFromPage placeOrderFromPage = cartPage.clickPlaceOrder();
 
         try{Thread.sleep(500);} catch (InterruptedException e){}
-        placeOrderMenu.typeName("george");
-        placeOrderMenu.typeCountry("US");
-        placeOrderMenu.typeCity("TestyWebVille");
-        placeOrderMenu.typeCardNumber("1111-1111-1111-1111");
-        placeOrderMenu.typeMonth("03");
-        placeOrderMenu.typeYear("2024");
-        OrderConfrimation orderConfrimation = placeOrderMenu.clickSubmitButton();
-        Assert.assertTrue(orderConfrimation.checkMarkPresent(), "Order confirmation popup did not appear");
+        placeOrderFromPage.typeName("george");
+        placeOrderFromPage.typeCountry("US");
+        placeOrderFromPage.typeCity("TestyWebVille");
+        placeOrderFromPage.typeCardNumber("1111-1111-1111-1111");
+        placeOrderFromPage.typeMonth("03");
+        placeOrderFromPage.typeYear("2024");
+        OrderConfrimationPage orderConfrimationPage = placeOrderFromPage.clickSubmitButton();
+        Assert.assertTrue(orderConfrimationPage.isCheckMarkPresent(), "Order confirmation popup did not appear");
     }
 
     @Test
-    public void testAddAllItemsToCart(){
+    public void testAddAllItemsToCart() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
         ProductPage productPage = new ProductPage(getDriver());
         int numProducts = homePage.getProducts().size();
-        for (int i = 0; i < numProducts; i++){
+        for (int i = 0; i < numProducts; i++) {
             ProductItem productItem = homePage.getProducts().get(i);
+            System.out.println(homePage.getProducts().get(i).getProductName());
             productPage = productItem.clickProduct();
             productPage.clickAddToCart();
             homePage = productPage.clickHomeInHeader();
         }
         CartPage cartPage = productPage.clickCart();
-        cartPage.waitForTotal();
-        Assert.assertEquals(cartPage.getCartItems().size(), numProducts, "Number of items added does not match number in cart");
+        String prev = "prev";
+        String next = "next";
+        while (!prev.equals(next)) {
+            prev = cartPage.getTotal();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            next = cartPage.getTotal();
+        }
+        SoftAssert softAssert = new SoftAssert();
+        for (ProductItem productItem : homePage.getProducts()) {
+            CartItem item = cartPage.getCartItemByName(productItem.getProductName());
+            softAssert.assertNotNull(item, "Item: " + productItem.getProductName() + " missing from cart");
+        }
+        softAssert.assertAll();
     }
 
     @Test
@@ -72,11 +88,12 @@ public class WebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
-
-        ProductPage productPage = homePage.getProducts().get(new Random().nextInt(homePage.getProducts().size())).clickProduct();
+        int randomIndex = new Random().nextInt(homePage.getProducts().size());
+        ProductPage productPage = homePage.getProducts().get(randomIndex).clickProduct();
         productPage.clickAddToCart();
         homePage = productPage.clickHomeInHeader();
-        productPage = homePage.getProducts().get(new Random().nextInt(homePage.getProducts().size())).clickProduct();
+        randomIndex = new Random().nextInt(homePage.getProducts().size());
+        productPage = homePage.getProducts().get(randomIndex).clickProduct();
         productPage.clickAddToCart();
         CartPage cartPage = productPage.clickCart();
 
@@ -95,8 +112,11 @@ public class WebTest implements IAbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
 
-        AboutUsVideo aboutUsVideo = homePage.clickAboutUs();
-        aboutUsVideo.clickPlayButton();
-        Assert.assertTrue(aboutUsVideo.remainingTimeUpdating(), "Video is not playing");
+        AboutUsVideoPage aboutUsVideoPage = homePage.clickAboutUs();
+        aboutUsVideoPage.clickPlayButton();
+        String initRemainingTime = aboutUsVideoPage.getRemainingVideoPlayTime();
+        try{Thread.sleep(2000);} catch (InterruptedException e){}
+        String currentRemainingTime = aboutUsVideoPage.getRemainingVideoPlayTime();
+        Assert.assertFalse(currentRemainingTime.equals(initRemainingTime), "Video is not playing");
     }
 }

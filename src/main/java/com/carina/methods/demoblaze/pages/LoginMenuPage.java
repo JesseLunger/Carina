@@ -1,13 +1,11 @@
-package com.carina.methods.mobile.gui.demoblaze.components;
+package com.carina.methods.demoblaze.pages;
 
-import com.carina.methods.mobile.gui.demoblaze.pages.HomePage;
-import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginMenu extends AbstractUIObject {
+public class LoginMenuPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@id='loginusername']")
     private ExtendedWebElement usernameField;
@@ -18,7 +16,7 @@ public class LoginMenu extends AbstractUIObject {
     @FindBy(xpath = "//button[text()='Log in']")
     private ExtendedWebElement loginButton;
 
-    public LoginMenu(WebDriver driver) {
+    public LoginMenuPage(WebDriver driver) {
         super(driver);
     }
 

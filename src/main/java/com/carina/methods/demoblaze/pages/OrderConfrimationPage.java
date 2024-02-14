@@ -1,20 +1,20 @@
-package com.carina.methods.mobile.gui.demoblaze.components;
+package com.carina.methods.demoblaze.pages;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class OrderConfrimation extends AbstractUIObject {
+public class OrderConfrimationPage extends AbstractPage {
 
     @FindBy(xpath = "//div [@class='sa-placeholder']")
     private ExtendedWebElement checkMark;
 
-    protected OrderConfrimation(WebDriver driver) {
+    public OrderConfrimationPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean checkMarkPresent(){
+    public boolean isCheckMarkPresent(){
         assertElementPresent(checkMark); //Will throw Error if false
         return true;
     }

@@ -1,7 +1,6 @@
-package com.carina.methods.mobile.gui.demoblaze.components;
+package com.carina.methods.demoblaze.components;
 
-import com.carina.methods.api.PutEmployeeMethod;
-import com.carina.methods.mobile.gui.demoblaze.pages.CartPage;
+import com.carina.methods.demoblaze.pages.CartPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
@@ -13,6 +12,9 @@ public class CartItem extends AbstractUIObject {
     @FindBy(xpath = ".//a [contains(text(), 'Delete')]")
     private ExtendedWebElement deleteButton;
 
+    @FindBy(xpath = ".//td[2]")  // only path option
+    private ExtendedWebElement itemName;
+
     public CartItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -20,5 +22,9 @@ public class CartItem extends AbstractUIObject {
     public CartPage clickDeleteButton(){
         deleteButton.click();
         return new CartPage(getDriver());
+    }
+
+    public String getProductName(){
+        return itemName.getText();
     }
 }

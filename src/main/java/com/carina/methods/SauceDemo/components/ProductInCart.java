@@ -18,4 +18,5 @@ public class ProductInCart extends AbstractUIObject {
     public void clickRemoveButton(){
         removeButton.click();
     }
+
 }

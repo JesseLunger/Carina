@@ -1,16 +1,14 @@
-package com.carina.methods.mobile.gui.demoblaze.pages;
+package com.carina.methods.demoblaze.pages;
 
-import com.carina.methods.mobile.gui.demoblaze.components.CartItem;
-import com.carina.methods.mobile.gui.demoblaze.components.PlaceOrderMenu;
+import com.carina.methods.demoblaze.components.CartItem;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class CartPage extends AbstractPage {
+public class CartPage extends BasePage  {
 
     @FindBy(xpath = "//h3[@id='totalp']")
     private ExtendedWebElement productTotal;
@@ -36,22 +34,23 @@ public class CartPage extends AbstractPage {
         setUiLoadedMarker(cartItemImage);
     }
 
-    public PlaceOrderMenu clickPlaceOrder(){
+    public PlaceOrderFromPage clickPlaceOrder(){
         placeOrderButton.click();
-        return new PlaceOrderMenu(getDriver());
+        return new PlaceOrderFromPage(getDriver());
     }
 
     public List<CartItem> getCartItems(){
         return cartItems;
     }
 
-    public void waitForTotal(){
-        String prev = "prev";
-        String next = "next";
-        while (!prev.equals(next)){
-            prev = productTotal.getText();
-            try{Thread.sleep(500);} catch (InterruptedException e){}
-            next = productTotal.getText();
-        }
+    public CartItem getCartItemByName(String itemName){
+        return cartItems.stream()
+                .filter(cartItem -> cartItem.getProductName().equals(itemName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public String getTotal(){
+        return productTotal.getText();
     }
 }

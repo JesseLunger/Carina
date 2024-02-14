@@ -2,12 +2,10 @@ package com.carina.tests;
 
 import com.carina.methods.SauceDemo.components.Product;
 import com.carina.methods.SauceDemo.screens.*;
-import com.carina.methods.mobile.gui.demoblaze.pages.ProductPage;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
-import org.checkerframework.checker.units.qual.C;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -19,9 +17,9 @@ public class AndroidTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test()
+    @Test() 
     @MethodOwner(owner = "suiteOwner")
-    @TestPriority(Priority.P2)
+    @TestPriority(Priority.P1)
     public void testLogin() {
         HomeScreen homeScreen = new HomeScreen(getDriver());
         homeScreen.typeUsername("standard_user");
@@ -32,7 +30,7 @@ public class AndroidTest implements IAbstractTest {
 
     @Test(dependsOnMethods = "testLogin")
     @MethodOwner(owner = "suiteOwner")
-    @TestPriority(Priority.P1)
+    @TestPriority(Priority.P4)
     public void testAddToCart(){
         ProductScreen productScreen = new ProductScreen(getDriver());
         Product product = productScreen.getProducts().get(0);

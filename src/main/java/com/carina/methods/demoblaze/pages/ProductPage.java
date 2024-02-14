@@ -1,15 +1,10 @@
-package com.carina.methods.mobile.gui.demoblaze.pages;
+package com.carina.methods.demoblaze.pages;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class ProductPage extends AbstractPage {
 
@@ -28,7 +23,7 @@ public class ProductPage extends AbstractPage {
     public ProductPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(productName);
+        setUiLoadedMarker(addToCartButton);
     }
 
     public HomePage clickHomeInHeader(){
@@ -38,9 +33,6 @@ public class ProductPage extends AbstractPage {
 
     public void clickAddToCart() {
         addToCartButton.click();
-        new WebDriverWait(getDriver(), Duration.ofMillis(2000)).until(ExpectedConditions.alertIsPresent());
-        Alert alert = getDriver().switchTo().alert();
-        alert.accept();
     }
 
     public CartPage clickCart(){
