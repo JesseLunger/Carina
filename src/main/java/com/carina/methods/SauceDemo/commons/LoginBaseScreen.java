@@ -5,7 +5,7 @@ import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class LoginBaseScreen extends AbstractPage implements IMobileUtils {
+public abstract class LoginBaseScreen extends ScreenBaseClass {
     protected LoginBaseScreen(WebDriver driver) {
         super(driver);
     }
@@ -15,6 +15,4 @@ public abstract class LoginBaseScreen extends AbstractPage implements IMobileUti
     public abstract void typePassword(String password);
 
     public abstract ProductScreen clickLoginButton();
-
-    public abstract boolean isOpen();
 }

@@ -5,7 +5,7 @@ import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class OrderConfirmationBaseScreen extends AbstractPage implements IMobileUtils {
+public abstract class OrderConfirmationBaseScreen extends ScreenBaseClass {
     protected OrderConfirmationBaseScreen(WebDriver driver) {
         super(driver);
     }

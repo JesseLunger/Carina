@@ -1,12 +1,13 @@
 package com.carina.methods.SauceDemo.components;
 
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class Product extends AbstractUIObject {
+public class Product extends AbstractUIObject implements IMobileUtils {
 
     @FindBy(xpath = ".//android.widget.TextView[@content-desc='test-Item title']")
     private ExtendedWebElement productName;
@@ -26,10 +27,11 @@ public class Product extends AbstractUIObject {
     }
 
     public void clickAddToCartButton(){
+        swipe(addToCartButton, 3);
         addToCartButton.click();
     }
 
-    public boolean hasBeenSelected(){
+    public boolean removeFromCartButtonIsPresent(){
         return removeFromCartButton.isElementPresent();
     }
 }

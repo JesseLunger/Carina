@@ -8,7 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProductInCart extends AbstractUIObject {
 
-    @FindBy(xpath = ".//android.widget.TextView[@text=\"REMOVE\"]")
+    // //android.widget.TextView[@text="Test.allTheThings() T-Shirt (Red)"]
+
+    @FindBy(xpath = ".//android.widget.TextView[@text='REMOVE']")
     private ExtendedWebElement removeButton;
 
     public ProductInCart(WebDriver driver, SearchContext searchContext) {
@@ -19,6 +21,7 @@ public class ProductInCart extends AbstractUIObject {
         removeButton.click();
     }
 
-    // //android.widget.TextView(@text=\'%s')/following-sibling::*[@content-desc='test-ADD TO CART']]
+
+
 
 }

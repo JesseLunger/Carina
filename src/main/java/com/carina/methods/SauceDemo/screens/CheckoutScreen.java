@@ -53,4 +53,11 @@ public class CheckoutScreen extends CheckoutBaseScreen{
         continueButton.click();
         return new CheckoutOverviewScreen(getDriver());
     }
+
+    @Override
+    public boolean isOpened(){
+        return screenTitle.format("CHECKOUT: INFORMATION").isPresent();
+    }
+
+
 }

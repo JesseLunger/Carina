@@ -5,7 +5,7 @@ import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class HamburgerMenuBaseScreen extends AbstractPage implements IMobileUtils {
+public abstract class HamburgerMenuBaseScreen extends ScreenBaseClass {
     protected HamburgerMenuBaseScreen(WebDriver driver) {
         super(driver);
     }

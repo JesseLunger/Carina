@@ -22,4 +22,9 @@ public class HamburgerMenuScreen extends HamburgerMenuBaseScreen{
         logOutButton.click();
         return new LoginScreen(getDriver());
     }
+
+    @Override
+    public boolean isOpened(){
+        return logOutButton.isPresent();
+    }
 }

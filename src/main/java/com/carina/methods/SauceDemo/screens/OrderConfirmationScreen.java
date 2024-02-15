@@ -24,4 +24,9 @@ public class OrderConfirmationScreen extends OrderConfirmationBaseScreen {
         backToHomeButton.click();
         return new ProductScreen(getDriver());
     }
+
+    @Override
+    public boolean isOpened(){
+        return screenTitle.format("CHECKOUT: COMPLETE!").isPresent();
+    }
 }
