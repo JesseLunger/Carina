@@ -1,14 +1,17 @@
-package com.carina.methods.SauceDemo.screens;
+package com.carina.methods.saucedemo.android.pages;
 
-import com.carina.methods.SauceDemo.commons.CheckoutBaseScreen;
+import com.carina.methods.saucedemo.commons.pages.CheckoutOverviewScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CheckoutBaseScreen.class)
-public class CheckoutScreen extends CheckoutBaseScreen {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = com.carina.methods.saucedemo.commons.pages.CheckoutScreenBase.class)
+public class CheckoutScreen extends com.carina.methods.saucedemo.commons.pages.CheckoutScreenBase {
+
+    @FindBy(xpath = "//android.widget.TextView[@text='CHECKOUT: INFORMATION']")
+    private ExtendedWebElement pageTitle;
 
     @FindBy(xpath = "//android.widget.EditText[@content-desc='test-First Name']")
     private ExtendedWebElement firstNameField;
@@ -24,8 +27,6 @@ public class CheckoutScreen extends CheckoutBaseScreen {
 
     public CheckoutScreen(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(firstNameField);
     }
 
     @Override
@@ -44,15 +45,13 @@ public class CheckoutScreen extends CheckoutBaseScreen {
     }
 
     @Override
-    public CheckoutOverviewScreen clickContinueButton() {
+    public CheckoutOverviewScreenBase clickContinueButton() {
         continueButton.click();
-        return new CheckoutOverviewScreen(getDriver());
+        return initPage(CheckoutOverviewScreenBase.class);
     }
 
     @Override
     public boolean isOpened() {
-        return screenTitle.format("CHECKOUT: INFORMATION").isPresent();
+        return pageTitle.isPresent();
     }
-
-
 }
