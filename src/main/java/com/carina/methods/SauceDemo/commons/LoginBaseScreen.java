@@ -3,9 +3,9 @@ package com.carina.methods.SauceDemo.commons;
 import com.carina.methods.SauceDemo.screens.ProductScreen;
 import org.openqa.selenium.WebDriver;
 
-public abstract class LoginBaseScreen extends ScreenBaseClass {
+public abstract class LoginBaseScreen extends AbstractSauceDemoScreenBase {
 
-    protected LoginBaseScreen(WebDriver driver) {
+    public LoginBaseScreen(WebDriver driver) {
         super(driver);
     }
 

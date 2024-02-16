@@ -1,7 +1,7 @@
 package com.carina.methods.SauceDemo.screens;
 
 import com.carina.methods.SauceDemo.commons.CheckoutOverviewBaseScreen;
-import com.carina.methods.SauceDemo.components.ProductInCartOverview;
+import com.carina.methods.SauceDemo.components.ProductInCartOverviewComponent;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
@@ -35,9 +35,11 @@ public class CheckoutOverviewScreen extends CheckoutOverviewBaseScreen {
     }
 
     @Override
-    public ProductInCartOverview getByProductInCartName(String name) {
+    public ProductInCartOverviewComponent getByProductInCartName(String name) {
         swipe(productInCartParent.format(name));
-        return new ProductInCartOverview(getDriver(), productInCartParent.format(name).getElement(), name);
+        ProductInCartOverviewComponent productInCartOverviewComponent = new ProductInCartOverviewComponent(getDriver(), productInCartParent.format(name).getElement());
+        productInCartOverviewComponent.setName(name);
+        return productInCartOverviewComponent;
     }
 
 }

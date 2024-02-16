@@ -1,14 +1,14 @@
 package com.carina.methods.SauceDemo.commons;
 
-import com.carina.methods.SauceDemo.components.Product;
+import com.carina.methods.SauceDemo.components.ProductComponent;
 import org.openqa.selenium.WebDriver;
 
-public abstract class ProductBaseScreen extends ScreenBaseClass {
+public abstract class ProductBaseScreen extends AbstractSauceDemoScreenBase {
 
-    protected ProductBaseScreen(WebDriver driver) {
+    public ProductBaseScreen(WebDriver driver) {
         super(driver);
     }
 
-    public abstract Product getProductByName(String name);
+    public abstract ProductComponent getProductByName(String name);
 
 }

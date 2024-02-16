@@ -1,7 +1,7 @@
 package com.carina.methods.SauceDemo.screens;
 
 import com.carina.methods.SauceDemo.commons.ProductBaseScreen;
-import com.carina.methods.SauceDemo.components.Product;
+import com.carina.methods.SauceDemo.components.ProductComponent;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
@@ -23,8 +23,8 @@ public class ProductScreen extends ProductBaseScreen {
     }
 
     @Override
-    public Product getProductByName(String name) {
-        return new Product(getDriver(), productParent.format(name).getElement());
+    public ProductComponent getProductByName(String name) {
+        return new ProductComponent(getDriver(), productParent.format(name).getElement());
     }
 
 }

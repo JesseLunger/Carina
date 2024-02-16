@@ -1,7 +1,7 @@
 package com.carina.methods.SauceDemo.screens;
 
 import com.carina.methods.SauceDemo.commons.CartBaseScreen;
-import com.carina.methods.SauceDemo.components.ProductInCart;
+import com.carina.methods.SauceDemo.components.ProductInCartComponent;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +25,6 @@ public class CartScreen extends CartBaseScreen {
 
     @Override
     public CheckoutScreen clickCheckoutButton() {
-        swipe(checkoutButton, 3);
         checkoutButton.click();
         return new CheckoutScreen(getDriver());
     }
@@ -36,9 +35,15 @@ public class CartScreen extends CartBaseScreen {
     }
 
     @Override
-    public ProductInCart findByProductInCartName(String name) {
+    public ProductInCartComponent findByProductInCartName(String name) {
         swipe(productInCartParent.format(name));
-        return new ProductInCart(getDriver(), productInCartParent.format(name).getElement());
+        return new ProductInCartComponent(getDriver(), productInCartParent.format(name).getElement());
+    }
+
+    @Override
+    public CartScreen clickCheckoutHeaderButton() {
+        checkoutCartButton.click();
+        return new CartScreen(getDriver());
     }
 
 }

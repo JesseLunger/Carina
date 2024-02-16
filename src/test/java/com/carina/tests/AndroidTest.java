@@ -1,7 +1,7 @@
 package com.carina.tests;
 
-import com.carina.methods.SauceDemo.components.Product;
-import com.carina.methods.SauceDemo.components.ProductInCart;
+import com.carina.methods.SauceDemo.components.ProductComponent;
+import com.carina.methods.SauceDemo.components.ProductInCartComponent;
 import com.carina.methods.SauceDemo.screens.*;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
@@ -39,17 +39,17 @@ public class AndroidTest implements IAbstractTest {
         SoftAssert softAssert = new SoftAssert();
         ProductScreen productScreen = new ProductScreen(getDriver());
 
-        Product product1 = productScreen.getProductByName(R.TESTDATA.get("item1"));
-        product1.clickAddToCartButton();
-        softAssert.assertTrue(product1.removeFromCartButtonIsPresent());
+        ProductComponent productComponent1 = productScreen.getProductByName(R.TESTDATA.get("item1"));
+        productComponent1.clickAddToCartButton();
+        softAssert.assertTrue(productComponent1.isRemoveFromCartButtonIsPresent());
 
-        Product product2 = productScreen.getProductByName(R.TESTDATA.get("item2"));
-        product2.clickAddToCartButton();
-        softAssert.assertTrue(product2.removeFromCartButtonIsPresent());
+        ProductComponent productComponent2 = productScreen.getProductByName(R.TESTDATA.get("item2"));
+        productComponent2.clickAddToCartButton();
+        softAssert.assertTrue(productComponent2.isRemoveFromCartButtonIsPresent());
 
-        Product product3 = productScreen.getProductByName(R.TESTDATA.get("item3"));
-        product3.clickAddToCartButton();
-        softAssert.assertTrue(product3.removeFromCartButtonIsPresent());
+        ProductComponent productComponent3 = productScreen.getProductByName(R.TESTDATA.get("item3"));
+        productComponent3.clickAddToCartButton();
+        softAssert.assertTrue(productComponent3.isRemoveFromCartButtonIsPresent());
         softAssert.assertAll("Not all products were selected");
     }
 
@@ -59,9 +59,9 @@ public class AndroidTest implements IAbstractTest {
     public void testItemsToCart() {
         CartScreen cartScreen = new CartScreen(getDriver());
         cartScreen.clickCheckoutHeaderButton();
-        ProductInCart productInCart1 = cartScreen.findByProductInCartName(R.TESTDATA.get("item3"));
-        productInCart1.clickRemoveButton();
-        Assert.assertFalse(productInCart1.isPresent());
+        ProductInCartComponent productInCartComponent1 = cartScreen.findByProductInCartName(R.TESTDATA.get("item3"));
+        productInCartComponent1.clickRemoveButton();
+        Assert.assertFalse(productInCartComponent1.isPresent());
     }
 
     @Test(dependsOnMethods = "testItemsToCart")
@@ -88,4 +88,11 @@ public class AndroidTest implements IAbstractTest {
         LoginScreen loginScreen = hamburgerMenuScreen.clickLogoutButton();
         Assert.assertTrue(loginScreen.isOpened(), "Home screen did not open");
     }
+
+
+//    @Test
+//    public void debugTest(){
+//        CheckoutOverviewScreen checkoutOverviewScreen = new CheckoutOverviewScreen(getDriver());
+//
+//    }
 }

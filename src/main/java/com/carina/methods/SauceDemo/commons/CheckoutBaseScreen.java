@@ -3,9 +3,9 @@ package com.carina.methods.SauceDemo.commons;
 import com.carina.methods.SauceDemo.screens.CheckoutOverviewScreen;
 import org.openqa.selenium.WebDriver;
 
-public abstract class CheckoutBaseScreen extends ScreenBaseClass {
+public abstract class CheckoutBaseScreen extends AbstractSauceDemoScreenBase {
 
-    protected CheckoutBaseScreen(WebDriver driver) {
+    public CheckoutBaseScreen(WebDriver driver) {
         super(driver);
     }
 
