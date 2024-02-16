@@ -22,16 +22,16 @@ public class Product extends AbstractUIObject implements IMobileUtils {
         super(driver, searchContext);
     }
 
-    public void clickTitle(){
+    public void clickTitle() {
         productName.click();
     }
 
-    public void clickAddToCartButton(){
+    public void clickAddToCartButton() {
         swipe(addToCartButton, 3);
         addToCartButton.click();
     }
 
-    public boolean removeFromCartButtonIsPresent(){
+    public boolean removeFromCartButtonIsPresent() {
         return removeFromCartButton.isElementPresent();
     }
 }

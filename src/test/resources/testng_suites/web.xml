@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Tests - API" parallel="methods" thread-count="10">
+<suite verbose="1" name="Carina Tests - Web" parallel="methods" thread-count="10">
 
     <test name="demoBlaze web tests">
         <classes>
-            <class name="com.carina.tests.APITest">
+            <class name="com.carina.tests.WebTest">
                 <methods>
                     <include name="testSignIn"/>
                     <include name="testBuySingle"/>

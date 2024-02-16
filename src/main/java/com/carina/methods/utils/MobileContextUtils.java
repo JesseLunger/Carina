@@ -27,7 +27,7 @@ public class MobileContextUtils implements IDriverPool {
         return driver;
     }
 
-    public void switchMobileContext(View context){
+    public void switchMobileContext(View context) {
         switchMobileContext(context, null);
     }
 
@@ -40,7 +40,7 @@ public class MobileContextUtils implements IDriverPool {
         LOGGER.info("Existing contexts: ");
         for (String cont : contextHandles) {
             if (cont.contains(context.getView())) {
-                if (exclude != null && cont.contains(exclude.getView())){
+                if (exclude != null && cont.contains(exclude.getView())) {
                     continue;
                 }
                 desiredContext = cont;

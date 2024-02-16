@@ -18,11 +18,11 @@ public class AboutUsVideoPage extends AbstractPage {
         super(driver);
     }
 
-    public void clickPlayButton(){
+    public void clickPlayButton() {
         playButton.click();
     }
 
-    public String getRemainingVideoPlayTime(){
+    public String getRemainingVideoPlayTime() {
         return remainingTime.getText();
     }
 }

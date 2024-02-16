@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class CartPage extends BasePage  {
+public class CartPage extends BasePage {
 
     @FindBy(xpath = "//h3[@id='totalp']")
     private ExtendedWebElement productTotal;
@@ -34,23 +34,23 @@ public class CartPage extends BasePage  {
         setUiLoadedMarker(cartItemImage);
     }
 
-    public PlaceOrderFromPage clickPlaceOrder(){
+    public PlaceOrderFromPage clickPlaceOrder() {
         placeOrderButton.click();
         return new PlaceOrderFromPage(getDriver());
     }
 
-    public List<CartItem> getCartItems(){
+    public List<CartItem> getCartItems() {
         return cartItems;
     }
 
-    public CartItem getCartItemByName(String itemName){
+    public CartItem getCartItemByName(String itemName) {
         return cartItems.stream()
                 .filter(cartItem -> cartItem.getProductName().equals(itemName))
                 .findFirst()
                 .orElse(null);
     }
 
-    public String getTotal(){
+    public String getTotal() {
         return productTotal.getText();
     }
 }

@@ -26,7 +26,7 @@ public class ProductPage extends AbstractPage {
         setUiLoadedMarker(addToCartButton);
     }
 
-    public HomePage clickHomeInHeader(){
+    public HomePage clickHomeInHeader() {
         homeHeaderOption.click();
         return new HomePage(getDriver());
     }
@@ -35,7 +35,7 @@ public class ProductPage extends AbstractPage {
         addToCartButton.click();
     }
 
-    public CartPage clickCart(){
+    public CartPage clickCart() {
         cartHeaderOption.click();
         return new CartPage(getDriver());
     }

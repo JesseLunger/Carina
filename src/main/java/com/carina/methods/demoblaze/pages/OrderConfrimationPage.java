@@ -14,7 +14,7 @@ public class OrderConfrimationPage extends AbstractPage {
         super(driver);
     }
 
-    public boolean isCheckMarkPresent(){
+    public boolean isCheckMarkPresent() {
         assertElementPresent(checkMark); //Will throw Error if false
         return true;
     }

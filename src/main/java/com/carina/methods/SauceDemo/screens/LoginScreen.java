@@ -2,10 +2,7 @@ package com.carina.methods.SauceDemo.screens;
 
 import com.carina.methods.SauceDemo.commons.LoginBaseScreen;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -26,24 +23,24 @@ public class LoginScreen extends LoginBaseScreen {
     }
 
     @Override
-    public void typeUsername(String username){
+    public void typeUsername(String username) {
         userNameField.type(username);
     }
 
     @Override
-    public void typePassword(String password){
+    public void typePassword(String password) {
         passwordField.type(password);
     }
 
 
     @Override
-    public ProductScreen clickLoginButton(){
+    public ProductScreen clickLoginButton() {
         loginButton.click();
         return new ProductScreen(getDriver());
     }
 
     @Override
-    public boolean isOpened(){
+    public boolean isOpened() {
         return userNameField.isPresent();
     }
 }

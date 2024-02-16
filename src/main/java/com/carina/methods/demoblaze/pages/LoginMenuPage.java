@@ -20,15 +20,15 @@ public class LoginMenuPage extends AbstractPage {
         super(driver);
     }
 
-    public void typeUsername(String username){
+    public void typeUsername(String username) {
         usernameField.type(username);
     }
 
-    public void typePassword(String password){
+    public void typePassword(String password) {
         passwordField.type(password);
     }
 
-    public HomePage clickLogInButton(){
+    public HomePage clickLogInButton() {
         loginButton.click();
         return new HomePage(getDriver());
     }

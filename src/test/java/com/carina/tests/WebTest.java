@@ -19,7 +19,7 @@ public class WebTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
-    public void testSignIn(){
+    public void testSignIn() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
@@ -34,7 +34,7 @@ public class WebTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
-    public void testBuySingle(){
+    public void testBuySingle() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
@@ -44,7 +44,10 @@ public class WebTest implements IAbstractTest {
         CartPage cartPage = productPage.clickCart();
         PlaceOrderFromPage placeOrderFromPage = cartPage.clickPlaceOrder();
 
-        try{Thread.sleep(500);} catch (InterruptedException e){}
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
         placeOrderFromPage.typeName("george");
         placeOrderFromPage.typeCountry("US");
         placeOrderFromPage.typeCity("TestyWebVille");
@@ -95,7 +98,7 @@ public class WebTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
-    public void testDeleteAllItemsFromCart(){
+    public void testDeleteAllItemsFromCart() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
@@ -109,8 +112,11 @@ public class WebTest implements IAbstractTest {
         CartPage cartPage = productPage.clickCart();
 
         int numItems = cartPage.getCartItems().size();
-        for (int i = 0; i < numItems; i++){
-            try{Thread.sleep(500);} catch (InterruptedException e){}
+        for (int i = 0; i < numItems; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+            }
             CartItem cartItem = cartPage.getCartItems().get(0);
             cartPage = cartItem.clickDeleteButton();
         }
@@ -120,7 +126,7 @@ public class WebTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
-    public void testPlayVideo(){
+    public void testPlayVideo() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page could not be opened");
@@ -128,7 +134,10 @@ public class WebTest implements IAbstractTest {
         AboutUsVideoPage aboutUsVideoPage = homePage.clickAboutUs();
         aboutUsVideoPage.clickPlayButton();
         String initRemainingTime = aboutUsVideoPage.getRemainingVideoPlayTime();
-        try{Thread.sleep(2000);} catch (InterruptedException e){}
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
         String currentRemainingTime = aboutUsVideoPage.getRemainingVideoPlayTime();
         Assert.assertFalse(currentRemainingTime.equals(initRemainingTime), "Video is not playing");
     }

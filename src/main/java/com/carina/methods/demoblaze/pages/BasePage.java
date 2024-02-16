@@ -19,7 +19,7 @@ public abstract class BasePage extends AbstractPage {
     @FindBy(xpath = "//a [@id= 'cartur']")
     protected ExtendedWebElement cartHeaderOption;
 
-    @FindBy (xpath = "//a[@id='nameofuser']")
+    @FindBy(xpath = "//a[@id='nameofuser']")
     protected ExtendedWebElement headerUserGreeting;
 
     public BasePage(WebDriver driver) {

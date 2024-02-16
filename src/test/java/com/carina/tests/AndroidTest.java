@@ -3,7 +3,6 @@ package com.carina.tests;
 import com.carina.methods.SauceDemo.components.Product;
 import com.carina.methods.SauceDemo.components.ProductInCart;
 import com.carina.methods.SauceDemo.screens.*;
-import com.carina.methods.demoblaze.pages.ProductPage;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
@@ -22,8 +21,8 @@ public class AndroidTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test() 
-    @MethodOwner(owner = "suiteOwner")
+    @Test()
+    @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testLogin() {
         LoginScreen loginScreen = new LoginScreen(getDriver());
@@ -33,11 +32,10 @@ public class AndroidTest implements IAbstractTest {
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen did not open");
     }
 
-//    @Test(dependsOnMethods = "testLogin")
-    @Test
-    @MethodOwner(owner = "suiteOwner")
+    @Test(dependsOnMethods = "testLogin")
+    @MethodOwner(owner = "esse Lunger")
     @TestPriority(Priority.P4)
-    public void testAddToCart(){
+    public void testAddToCart() {
         SoftAssert softAssert = new SoftAssert();
         ProductScreen productScreen = new ProductScreen(getDriver());
 
@@ -52,30 +50,24 @@ public class AndroidTest implements IAbstractTest {
         Product product3 = productScreen.getProductByName(R.TESTDATA.get("item3"));
         product3.clickAddToCartButton();
         softAssert.assertTrue(product3.removeFromCartButtonIsPresent());
-
         softAssert.assertAll("Not all products were selected");
     }
 
     @Test(dependsOnMethods = "testAddToCart")
-    @MethodOwner(owner = "suiteOwner")
+    @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
-    public void testItemsInCart(){
-        SoftAssert softAssert = new SoftAssert();
-
-        ProductScreen productScreen = new ProductScreen(getDriver());
-        CartScreen cartScreen = productScreen.clickCheckoutCartButton();
-
-        ProductInCart productInCart = cartScreen.findByProductInCartName(R.TESTDATA.get("item3"));
-
-
-
-//        Assert.assertTrue((cartScreen.getProductInCart().size() == 1), "Order vs Cart size mismatch");
+    public void testItemsToCart() {
+        CartScreen cartScreen = new CartScreen(getDriver());
+        cartScreen.clickCheckoutHeaderButton();
+        ProductInCart productInCart1 = cartScreen.findByProductInCartName(R.TESTDATA.get("item3"));
+        productInCart1.clickRemoveButton();
+        Assert.assertFalse(productInCart1.isPresent());
     }
 
-    @Test(dependsOnMethods = "testItemsInCart")
-    @MethodOwner(owner = "suiteOwner")
+    @Test(dependsOnMethods = "testItemsToCart")
+    @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
-    public void testCheckout(){
+    public void testCheckout() {
         CartScreen cartScreen = new CartScreen(getDriver());
         CheckoutScreen checkoutScreen = cartScreen.clickCheckoutButton();
         checkoutScreen.typeFirstName("test");
@@ -83,23 +75,17 @@ public class AndroidTest implements IAbstractTest {
         checkoutScreen.typeZipCode("97555");
         CheckoutOverviewScreen checkoutOverviewScreen = checkoutScreen.clickContinueButton();
         Assert.assertTrue(checkoutOverviewScreen.isOpened(), "Checkout overview screen did not open");
-
+        OrderConfirmationScreen orderConfirmationScreen = checkoutOverviewScreen.clickFinishButton();
+        Assert.assertTrue(orderConfirmationScreen.isOpened(), "Order confirmation screen did not open");
     }
 
     @Test(dependsOnMethods = "testCheckout")
-    @MethodOwner(owner = "suiteOwner")
+    @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
-    public void testLogout(){
-        CheckoutOverviewScreen checkoutOverviewScreen = new CheckoutOverviewScreen(getDriver());
-        HamburgerMenuScreen hamburgerMenuScreen = checkoutOverviewScreen.clickHamburgerMenu();
+    public void testLogout() {
+        OrderConfirmationScreen orderConfirmationScreen = new OrderConfirmationScreen(getDriver());
+        HamburgerMenuScreen hamburgerMenuScreen = orderConfirmationScreen.clickHamburgerMenu();
         LoginScreen loginScreen = hamburgerMenuScreen.clickLogoutButton();
         Assert.assertTrue(loginScreen.isOpened(), "Home screen did not open");
     }
-
-    @Test
-    public void debugtest(){
-        ProductScreen productScreen = new ProductScreen(getDriver());
-        Assert.assertTrue(productScreen.isOpened());
-    }
-
 }

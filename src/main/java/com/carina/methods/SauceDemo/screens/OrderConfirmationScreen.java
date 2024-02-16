@@ -2,10 +2,7 @@ package com.carina.methods.SauceDemo.screens;
 
 import com.carina.methods.SauceDemo.commons.OrderConfirmationBaseScreen;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,18 +12,18 @@ public class OrderConfirmationScreen extends OrderConfirmationBaseScreen {
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-BACK HOME']")
     private ExtendedWebElement backToHomeButton;
 
-    protected OrderConfirmationScreen(WebDriver driver) {
+    public OrderConfirmationScreen(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public ProductScreen clickBackToHomeButton(){
+    public ProductScreen clickBackToHomeButton() {
         backToHomeButton.click();
         return new ProductScreen(getDriver());
     }
 
     @Override
-    public boolean isOpened(){
+    public boolean isOpened() {
         return screenTitle.format("CHECKOUT: COMPLETE!").isPresent();
     }
 }

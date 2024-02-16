@@ -1,6 +1,7 @@
 package com.carina.methods.SauceDemo.screens;
 
 import com.carina.methods.SauceDemo.commons.CheckoutOverviewBaseScreen;
+import com.carina.methods.SauceDemo.components.ProductInCartOverview;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,9 @@ import org.openqa.selenium.support.FindBy;
 public class CheckoutOverviewScreen extends CheckoutOverviewBaseScreen {
 
 
+    @FindBy(xpath = "//android.widget.TextView[@text='%s']/parent::*/parent::*/parent::*/parent::*")
+    private ExtendedWebElement productInCartParent;
+
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-FINISH']")
     private ExtendedWebElement finishButton;
 
@@ -19,19 +23,21 @@ public class CheckoutOverviewScreen extends CheckoutOverviewBaseScreen {
     }
 
     @Override
-    public OrderConfirmationScreen clickFinishButton(){
+    public OrderConfirmationScreen clickFinishButton() {
+        swipe(finishButton, 3);
         finishButton.click();
         return new OrderConfirmationScreen(getDriver());
     }
 
     @Override
-    public HamburgerMenuScreen clickHamburgerMenu(){
-        hamburgerMenuButton.click();
-        return new HamburgerMenuScreen(getDriver());
+    public boolean isOpened() {
+        return screenTitle.format("CHECKOUT: OVERVIEW").isPresent();
     }
 
     @Override
-    public boolean isOpened(){
-        return screenTitle.format("CHECKOUT: OVERVIEW").isPresent();
+    public ProductInCartOverview getByProductInCartName(String name) {
+        swipe(productInCartParent.format(name));
+        return new ProductInCartOverview(getDriver(), productInCartParent.format(name).getElement(), name);
     }
+
 }

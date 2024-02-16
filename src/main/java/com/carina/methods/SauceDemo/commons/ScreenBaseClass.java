@@ -1,5 +1,7 @@
 package com.carina.methods.SauceDemo.commons;
 
+import com.carina.methods.SauceDemo.screens.CartScreen;
+import com.carina.methods.SauceDemo.screens.HamburgerMenuScreen;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
@@ -23,6 +25,18 @@ public abstract class ScreenBaseClass extends AbstractPage implements IMobileUti
     }
 
     public boolean isOpened() {
-        throw  new UnsupportedOperationException("IsOpen not implemented");
+        throw new UnsupportedOperationException("IsOpen not implemented");
     }
+
+    public HamburgerMenuScreen clickHamburgerMenu() {
+        hamburgerMenuButton.click();
+        return new HamburgerMenuScreen(getDriver());
+    }
+
+    public CartScreen clickCheckoutHeaderButton() {
+        checkoutCartButton.click();
+        return new CartScreen(getDriver());
+    }
+
+
 }

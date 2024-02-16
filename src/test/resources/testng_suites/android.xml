@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Carina Tests - Mobile" parallel="methods" thread-count="10">
+
+    <test name="Swag Labs tests">
+        <classes>
+            <class name="com.carina.tests.AndroidTest">
+                <methods>
+                    <include name="testLogin"/>
+                    <include name="testAddToCart"/>
+                    <include name="testItemsToCart"/>
+                    <include name="testCheckout"/>
+                    <include name="testLogout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

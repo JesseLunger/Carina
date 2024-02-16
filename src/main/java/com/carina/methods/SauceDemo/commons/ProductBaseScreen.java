@@ -1,7 +1,6 @@
 package com.carina.methods.SauceDemo.commons;
 
 import com.carina.methods.SauceDemo.components.Product;
-import com.carina.methods.SauceDemo.screens.CartScreen;
 import org.openqa.selenium.WebDriver;
 
 public abstract class ProductBaseScreen extends ScreenBaseClass {
@@ -10,7 +9,6 @@ public abstract class ProductBaseScreen extends ScreenBaseClass {
         super(driver);
     }
 
-    public abstract CartScreen clickCheckoutCartButton();
-
     public abstract Product getProductByName(String name);
+
 }

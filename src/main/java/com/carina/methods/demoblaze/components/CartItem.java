@@ -19,12 +19,12 @@ public class CartItem extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public CartPage clickDeleteButton(){
+    public CartPage clickDeleteButton() {
         deleteButton.click();
         return new CartPage(getDriver());
     }
 
-    public String getProductName(){
+    public String getProductName() {
         return itemName.getText();
     }
 }

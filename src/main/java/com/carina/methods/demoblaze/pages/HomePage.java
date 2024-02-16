@@ -28,17 +28,17 @@ public class HomePage extends BasePage {
 
     }
 
-    public LoginMenuPage clickSignInHeader(){
+    public LoginMenuPage clickSignInHeader() {
         loginHeaderOption.click();
         return new LoginMenuPage(getDriver());
     }
 
-    public AboutUsVideoPage clickAboutUs(){
+    public AboutUsVideoPage clickAboutUs() {
         aboutUsHeaderOption.click();
         return new AboutUsVideoPage(getDriver());
     }
 
-    public String getUserName(){
+    public String getUserName() {
         return headerUserGreeting.getText();
     }
 
@@ -46,7 +46,7 @@ public class HomePage extends BasePage {
         return products;
     }
 
-    public ProductItem getCartItemByName(String itemName){
+    public ProductItem getCartItemByName(String itemName) {
         return products.stream()
                 .filter(productItem -> productItem.getProductName().equals(itemName))
                 .findFirst()

@@ -21,7 +21,7 @@ public class PlaceOrderFromPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@id='month']")
     private ExtendedWebElement monthField;
-    
+
     @FindBy(xpath = "//input[@id='year']")
     private ExtendedWebElement yearField;
 
@@ -32,31 +32,31 @@ public class PlaceOrderFromPage extends AbstractPage {
         super(driver);
     }
 
-    public void typeName(String name){
+    public void typeName(String name) {
         nameField.type(name);
     }
 
-    public void typeCountry(String country){
+    public void typeCountry(String country) {
         countryField.type(country);
     }
 
-    public void typeCity(String city){
+    public void typeCity(String city) {
         cityField.type(city);
     }
 
-    public void typeCardNumber(String cardNumber){
+    public void typeCardNumber(String cardNumber) {
         creditCardField.type(cardNumber);
     }
 
-    public void typeMonth(String month){
+    public void typeMonth(String month) {
         monthField.type(month);
     }
 
-    public void typeYear(String year){
+    public void typeYear(String year) {
         yearField.type(year);
     }
 
-    public OrderConfrimationPage clickSubmitButton(){
+    public OrderConfrimationPage clickSubmitButton() {
         submitButton.click();
         return new OrderConfrimationPage(getDriver());
     }

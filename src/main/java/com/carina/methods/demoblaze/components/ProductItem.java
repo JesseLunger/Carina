@@ -16,12 +16,12 @@ public class ProductItem extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public ProductPage clickProduct(){
+    public ProductPage clickProduct() {
         productName.click();
         return new ProductPage(getDriver());
     }
 
-    public String getProductName(){
+    public String getProductName() {
         return productName.getText();
     }
 }
