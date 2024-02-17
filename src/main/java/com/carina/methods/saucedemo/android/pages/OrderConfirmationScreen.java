@@ -7,7 +7,7 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = com.carina.methods.saucedemo.commons.pages.OrderConfirmationScreenBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = OrderConfirmationScreenBase.class)
 public class OrderConfirmationScreen extends OrderConfirmationScreenBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='CHECKOUT: COMPLETE!']")

@@ -17,6 +17,8 @@ public abstract class CartScreenBase extends AbstractSauceDemoScreenBase {
 
     public abstract void clickRemoveButton(String productName);
 
+    public abstract CheckoutScreenBase clickCheckoutButton();
+
     public abstract void swipeProductLeft(String productName);
 
     public abstract void clickExposedRemoveButton(String productName);

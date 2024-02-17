@@ -13,7 +13,7 @@ public abstract class AbstractSauceDemoScreenBase extends AbstractPage implement
     }
 
     public boolean isOpened() {
-        throw new UnsupportedOperationException("IsOpen not implemented");
+        throw new UnsupportedOperationException("IsOpened not implemented");
     }
 
 }

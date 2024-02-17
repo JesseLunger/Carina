@@ -1,6 +1,7 @@
 package com.carina.methods.saucedemo.android.pages;
 
 import com.carina.methods.saucedemo.commons.components.ScreenHeaderBase;
+import com.carina.methods.saucedemo.commons.pages.ProductDetailsScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
@@ -39,15 +40,16 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public String getCostByName(String productName){
+    public String getCost(String productName){
         swipe(productCost.format(productName), 3);
         return productCost.format(productName).getText();
     }
 
     @Override
-    public String getImage(String productName){
+    public ProductDetailsScreenBase clickProductImg(String productName) {
         swipe(productImg.format(productName), 3);
-        return productImg.format(productName).getAttribute("src");
+        productImg.click();
+        return initPage(ProductDetailsScreenBase.class);
     }
 
 

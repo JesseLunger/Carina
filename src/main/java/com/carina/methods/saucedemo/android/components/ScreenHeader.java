@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ScreenHeaderBase.class)
-public class ScreenHeader extends AbstractPage {
+public class ScreenHeader extends ScreenHeaderBase {
 
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']")
     private ExtendedWebElement hamburgerMenuButton;

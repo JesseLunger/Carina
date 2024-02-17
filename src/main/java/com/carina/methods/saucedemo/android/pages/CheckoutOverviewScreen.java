@@ -31,6 +31,11 @@ public class CheckoutOverviewScreen extends CheckoutOverviewScreenBase {
     }
 
     @Override
+    public boolean isOpened(){
+        return pageTitle.isPresent();
+    }
+
+    @Override
     public String getCost(String productName) {
         return productCost.format(productName).getText();
     }

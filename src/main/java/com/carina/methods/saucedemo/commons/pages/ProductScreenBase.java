@@ -4,8 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class ProductScreenBase extends AbstractSauceDemoScreenBase {
 
-
-
     public ProductScreenBase(WebDriver driver) {
         super(driver);
     }
@@ -14,8 +12,8 @@ public abstract class ProductScreenBase extends AbstractSauceDemoScreenBase {
 
     public abstract void clickCartButton(String productName);
 
-    public abstract String getCostByName(String productName);
+    public abstract String getCost(String productName);
 
-    public abstract String getImage(String productName);
+    public abstract ProductDetailsScreenBase clickProductImg(String productName);
 
 }
