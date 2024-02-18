@@ -16,4 +16,6 @@ public abstract class ProductScreenBase extends AbstractSauceDemoScreenBase {
 
     public abstract ProductDetailsScreenBase clickProductImg(String productName);
 
+    public abstract String captureProductImage(String productName);
+
 }

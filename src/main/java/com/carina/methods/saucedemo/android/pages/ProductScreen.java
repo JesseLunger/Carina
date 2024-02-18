@@ -4,13 +4,25 @@ import com.carina.methods.saucedemo.commons.components.ScreenHeaderBase;
 import com.carina.methods.saucedemo.commons.pages.ProductDetailsScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.carina.methods.saucedemo.commons.pages.ProductScreenBase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ProductScreenBase.class)
 public class ProductScreen extends ProductScreenBase {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"PRODUCTS\"]")
     private ExtendedWebElement pageTitle;
@@ -52,5 +64,18 @@ public class ProductScreen extends ProductScreenBase {
         return initPage(ProductDetailsScreenBase.class);
     }
 
-
+    @Override
+    public String captureProductImage(String productName){
+        swipe(productImg.format(productName));
+        WebElement productImageElement = productImg.format(productName).getElement();
+        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES.BYTES);
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedData = messageDigest.digest(screenshot);
+            return Base64.getEncoder().encodeToString(hashedData);
+        } catch (NoSuchAlgorithmException e){
+            LOGGER.debug(e.getMessage());
+            return null;
+        }
+    }
 }

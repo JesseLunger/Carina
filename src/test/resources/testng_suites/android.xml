@@ -6,8 +6,9 @@
             <class name="com.carina.tests.AndroidTest">
                 <methods>
                     <include name="testLogin"/>
-                    <include name="testAddToCart"/>
-                    <include name="testItemsToCart"/>
+                    <include name="testImageData"/>
+                    <include name="testAddToCartAndVerifyPrice"/>
+                    <include name="testRemoveFromCartAndVerifyPrice"/>
                     <include name="testCheckout"/>
                     <include name="testLogout"/>
                 </methods>

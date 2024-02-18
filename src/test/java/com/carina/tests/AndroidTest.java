@@ -36,6 +36,22 @@ public class AndroidTest implements IAbstractTest {
     }
 
     @Test(dependsOnMethods = "testLogin")
+    @MethodOwner(owner = "Jesse Lunger")
+    @TestPriority(Priority.P4)
+    public void testImageData(){
+        //Test provided to prove an attempt was made to verify that the same images that were present in the product
+        //screen were also present in product details screen. The problem is both images have different resolutions.
+        //Furthermore, there is no unique identifier on the product description image that would allow for a wildcard
+        //xpath to verify image names were related.
+        ProductScreenBase productScreenBase = initPage(ProductScreenBase.class);
+        String imageHashInProducts = productScreenBase.captureProductImage(R.TESTDATA.get("item1"));
+        ProductDetailsScreenBase productDetailsScreenBase = productScreenBase.clickProductImg(R.TESTDATA.get("item1"));
+        String imageHashInDetails = productDetailsScreenBase.captureProductImage();
+        productDetailsScreenBase.clickBackToProducts();
+        Assert.assertNotEquals(imageHashInProducts, imageHashInDetails, "These two Images should not be equal due to resolution");
+    }
+
+    @Test(dependsOnMethods = "testImageData")
     @MethodOwner(owner = "jesse Lunger")
     @TestPriority(Priority.P1)
     public void testAddToCartAndVerifyPrice() {
@@ -48,7 +64,7 @@ public class AndroidTest implements IAbstractTest {
             productScreen.clickCartButton(itemName);
 
             ProductDetailsScreenBase productDetailsScreenBase = productScreen.clickProductImg(itemName);
-            softAssert.assertEquals(productDetailsScreenBase.getPrice(), itemInfo.get(itemName));
+            softAssert.assertEquals(productDetailsScreenBase.getPrice(), itemInfo.get(itemName),"Price mismatch product screen vs item description screen for: " + itemName);
             productScreen = productDetailsScreenBase.clickBackToProducts();
         }
 
@@ -64,7 +80,7 @@ public class AndroidTest implements IAbstractTest {
         Assert.assertTrue(cartScreenBase.isOpened());
         for (int i = 1; i < 4; i++) {
             String itemName = R.TESTDATA.get("item" + i);
-            softAssert.assertEquals(cartScreenBase.getCostByName(itemName), itemInfo.get(itemName), "Price mismatch for product " + itemName);
+            softAssert.assertEquals(cartScreenBase.getCostByName(itemName), itemInfo.get(itemName), "Price mismatch: product screen vs cart screen for: " + itemName);
             cartScreenBase.clickRemoveButton(itemName);
         }
         softAssert.assertAll();
