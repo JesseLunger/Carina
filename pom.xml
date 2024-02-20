@@ -21,7 +21,9 @@
         <carina-appcenter.version>1.1.4</carina-appcenter.version>
         <java.version>11</java.version>
         <zebrunner-agent.version>1.9.6</zebrunner-agent.version>
-        <suite>api</suite>
+        <suite1>api</suite1>
+        <suite2>web</suite2>
+        <suite3>android</suite3>
     </properties>
 
     <dependencies>
@@ -139,7 +141,9 @@
                     <argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar</argLine>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
+                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite1}.xml</suiteXmlFile>
+                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite2}.xml</suiteXmlFile>
+                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite3}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
