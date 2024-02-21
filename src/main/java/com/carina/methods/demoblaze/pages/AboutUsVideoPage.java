@@ -1,12 +1,17 @@
 package com.carina.methods.demoblaze.pages;
 
+import com.carina.methods.demoblaze.components.Header;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import org.kohsuke.rngom.parse.host.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 
-public class AboutUsVideoPage extends AbstractPage {
+public class AboutUsVideoPage extends BasePage {
+
+    @FindBy(xpath = " //h5[@id=\"logInModalLabel\"]")
+    private ExtendedWebElement pageTitle;
 
     @FindBy(xpath = "//button[@title='Play Video']")
     private ExtendedWebElement playButton;
@@ -16,6 +21,11 @@ public class AboutUsVideoPage extends AbstractPage {
 
     public AboutUsVideoPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public boolean isOpened() {
+        return pageTitle.isPresent();
     }
 
     public void clickPlayButton() {

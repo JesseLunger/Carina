@@ -1,18 +1,16 @@
 package com.carina.methods.demoblaze.pages;
 
+import com.carina.methods.demoblaze.components.Header;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class ProductPage extends AbstractPage {
+public class ProductPage extends BasePage {
 
-    @FindBy(xpath = "//a[contains(text(), 'Home')]")
-    private ExtendedWebElement homeHeaderOption;
-
-    @FindBy(xpath = "//a [@id= 'cartur']")
-    private ExtendedWebElement cartHeaderOption;
+    @FindBy(xpath = " //div [@id=\"navbarExample\"]")
+    private Header header;
 
     @FindBy(xpath = "//h2[@class='name']")
     private ExtendedWebElement productName;
@@ -26,17 +24,17 @@ public class ProductPage extends AbstractPage {
         setUiLoadedMarker(addToCartButton);
     }
 
-    public HomePage clickHomeInHeader() {
-        homeHeaderOption.click();
-        return new HomePage(getDriver());
+    public Header getHeader(){
+        return header;
+    }
+
+    @Override
+    public boolean isOpened() {
+        return productName.isPresent();
     }
 
     public void clickAddToCart() {
         addToCartButton.click();
     }
 
-    public CartPage clickCart() {
-        cartHeaderOption.click();
-        return new CartPage(getDriver());
-    }
 }

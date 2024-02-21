@@ -1,11 +1,17 @@
 package com.carina.methods.demoblaze.pages;
 
+import com.carina.methods.demoblaze.components.Header;
+import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginMenuPage extends AbstractPage {
+public class LoginMenuPage extends BasePage {
+
+    @FindBy(xpath = "//h5[@id=\"signInModalLabel\"]")
+    private ExtendedWebElement pageTitle;
 
     @FindBy(xpath = "//input[@id='loginusername']")
     private ExtendedWebElement usernameField;
@@ -18,7 +24,16 @@ public class LoginMenuPage extends AbstractPage {
 
     public LoginMenuPage(WebDriver driver) {
         super(driver);
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(usernameField);
+        setPageAbsoluteURL(R.CONFIG.get("url"));
     }
+
+    @Override
+    public boolean isOpened() {
+        return pageTitle.isPresent();
+    }
+
 
     public void typeUsername(String username) {
         usernameField.type(username);
