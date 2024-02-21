@@ -1,13 +1,14 @@
 package com.carina.methods.saucedemo.android.pages;
 
+import com.carina.methods.saucedemo.commons.pages.LoginScreenBase;
 import com.carina.methods.saucedemo.commons.pages.ProductScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = com.carina.methods.saucedemo.commons.pages.LoginScreenBase.class)
-public class LoginScreen extends com.carina.methods.saucedemo.commons.pages.LoginScreenBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginScreenBase.class)
+public class LoginScreen extends LoginScreenBase {
 
     @FindBy(xpath = "//android.widget.EditText[@content-desc='test-Username']")
     private ExtendedWebElement userNameField;
@@ -23,6 +24,11 @@ public class LoginScreen extends com.carina.methods.saucedemo.commons.pages.Logi
     }
 
     @Override
+    public boolean isOpened() {
+        return userNameField.isPresent();
+    }
+
+    @Override
     public void typeUsername(String username) {
         userNameField.type(username);
     }
@@ -32,15 +38,10 @@ public class LoginScreen extends com.carina.methods.saucedemo.commons.pages.Logi
         passwordField.type(password);
     }
 
-
     @Override
     public ProductScreenBase clickLoginButton() {
         loginButton.click();
         return initPage(ProductScreenBase.class);
     }
 
-    @Override
-    public boolean isOpened() {
-        return userNameField.isPresent();
-    }
 }

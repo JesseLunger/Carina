@@ -9,6 +9,6 @@ public abstract class HamburgerMenuScreenBase extends AbstractSauceDemoScreenBas
         super(driver);
     }
 
-    public abstract LoginScreen clickLogoutButton();
+    public abstract LoginScreenBase clickLogoutButton();
 
 }

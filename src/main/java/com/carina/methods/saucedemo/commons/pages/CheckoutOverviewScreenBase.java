@@ -8,14 +8,12 @@ public abstract class CheckoutOverviewScreenBase extends AbstractSauceDemoScreen
         super(driver);
     }
 
+    public abstract String getCostByName(String productName);
 
-    public abstract String getCost(String productName);
+    public abstract void swipeProductLeftByName(String productName);
 
-    public abstract void swipeProductLeft(String productName);
-
-    public abstract void clickExposedRemoveButton(String productName);
+    public abstract void clickExposedRemoveButtonByName(String productName);
 
     public abstract OrderConfirmationScreenBase clickFinishButton();
-
 
 }

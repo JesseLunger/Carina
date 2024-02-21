@@ -12,8 +12,10 @@ public class OrderConfirmationScreen extends OrderConfirmationScreenBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='CHECKOUT: COMPLETE!']")
     private ExtendedWebElement pageTitle;
+
     @FindBy(xpath = "//android.widget.TextView[@text=\"THANK YOU FOR YOU ORDER\"]")
     private ExtendedWebElement thankYouMessage;
+
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-BACK HOME']")
     private ExtendedWebElement backToHomeButton;
 

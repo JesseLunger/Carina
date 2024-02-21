@@ -1,14 +1,15 @@
 package com.carina.methods.saucedemo.android.pages;
 
 import com.carina.methods.saucedemo.commons.pages.CheckoutOverviewScreenBase;
+import com.carina.methods.saucedemo.commons.pages.CheckoutScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = com.carina.methods.saucedemo.commons.pages.CheckoutScreenBase.class)
-public class CheckoutScreen extends com.carina.methods.saucedemo.commons.pages.CheckoutScreenBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CheckoutScreenBase.class)
+public class CheckoutScreen extends CheckoutScreenBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='CHECKOUT: INFORMATION']")
     private ExtendedWebElement pageTitle;
@@ -27,6 +28,11 @@ public class CheckoutScreen extends com.carina.methods.saucedemo.commons.pages.C
 
     public CheckoutScreen(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public boolean isOpened() {
+        return pageTitle.isPresent();
     }
 
     @Override
@@ -50,8 +56,4 @@ public class CheckoutScreen extends com.carina.methods.saucedemo.commons.pages.C
         return initPage(CheckoutOverviewScreenBase.class);
     }
 
-    @Override
-    public boolean isOpened() {
-        return pageTitle.isPresent();
-    }
 }

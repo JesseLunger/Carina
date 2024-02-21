@@ -12,7 +12,7 @@ public class CartItem extends AbstractUIObject {
     @FindBy(xpath = ".//a [contains(text(), 'Delete')]")
     private ExtendedWebElement deleteButton;
 
-    @FindBy(xpath = ".//td[2]")  // only path option
+    @FindBy(xpath = ".//td[2]")
     private ExtendedWebElement itemName;
 
     public CartItem(WebDriver driver, SearchContext searchContext) {

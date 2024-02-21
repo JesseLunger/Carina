@@ -13,7 +13,6 @@ import java.util.Base64;
 
 public abstract class ProductDetailsScreenBase extends AbstractPage implements IMobileUtils {
 
-
     public ProductDetailsScreenBase(WebDriver driver) {
         super(driver);
     }
@@ -23,4 +22,5 @@ public abstract class ProductDetailsScreenBase extends AbstractPage implements I
     public abstract ProductScreenBase clickBackToProducts();
 
     public abstract String captureProductImage();
+
 }

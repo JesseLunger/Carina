@@ -22,10 +22,10 @@ public class AndroidTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private HashMap<String, String> itemInfo = new HashMap<>();
+
 
     @Test()
-    @MethodOwner(owner = "Jesse Lunger")
+    @MethodOwner()
     @TestPriority(Priority.P1)
     public void testLogin() {
         LoginScreen loginScreen = new LoginScreen(getDriver());
@@ -35,7 +35,7 @@ public class AndroidTest implements IAbstractTest {
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen did not open");
     }
 
-    @Test(dependsOnMethods = "testLogin")
+    @Test()
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P4)
     public void testImageData(){
@@ -43,53 +43,73 @@ public class AndroidTest implements IAbstractTest {
         //screen were also present in product details screen. The problem is both images have different resolutions.
         //Furthermore, there is no unique identifier on the product description image that would allow for a wildcard
         //xpath to verify image names were related.
+        testLogin();
+
         ProductScreenBase productScreenBase = initPage(ProductScreenBase.class);
-        String imageHashInProducts = productScreenBase.captureProductImage(R.TESTDATA.get("item1"));
-        ProductDetailsScreenBase productDetailsScreenBase = productScreenBase.clickProductImg(R.TESTDATA.get("item1"));
+        String imageHashInProducts = productScreenBase.captureProductImageByName(R.TESTDATA.get("item1"));
+        ProductDetailsScreenBase productDetailsScreenBase = productScreenBase.clickProductImgByName(R.TESTDATA.get("item1"));
         String imageHashInDetails = productDetailsScreenBase.captureProductImage();
         productDetailsScreenBase.clickBackToProducts();
         Assert.assertNotEquals(imageHashInProducts, imageHashInDetails, "These two Images should not be equal due to resolution");
     }
 
-    @Test(dependsOnMethods = "testImageData")
+    @Test()
     @MethodOwner(owner = "jesse Lunger")
     @TestPriority(Priority.P1)
     public void testAddToCartAndVerifyPrice() {
         SoftAssert softAssert = new SoftAssert();
+        HashMap<String, String> itemInfo = new HashMap<>();
+
+        testLogin();
         ProductScreenBase productScreen = initPage(ProductScreenBase.class);
 
         for (int i = 1; i < 4; i++) {
             String itemName = R.TESTDATA.get("item" + i);
-            itemInfo.put(itemName, productScreen.getCost(itemName));
-            productScreen.clickCartButton(itemName);
+            itemInfo.put(itemName, productScreen.getCostByName(itemName));
+            productScreen.clickCartButtonByName(itemName);
 
-            ProductDetailsScreenBase productDetailsScreenBase = productScreen.clickProductImg(itemName);
+            ProductDetailsScreenBase productDetailsScreenBase = productScreen.clickProductImgByName(itemName);
             softAssert.assertEquals(productDetailsScreenBase.getPrice(), itemInfo.get(itemName),"Price mismatch product screen vs item description screen for: " + itemName);
-            productScreen = productDetailsScreenBase.clickBackToProducts();
+            productDetailsScreenBase.clickBackToProducts();
         }
 
         softAssert.assertAll();
     }
 
-    @Test(dependsOnMethods = "testAddToCartAndVerifyPrice")
+    @Test()
     @MethodOwner(owner = "jesse Lunger")
     @TestPriority(Priority.P1)
     public void testRemoveFromCartAndVerifyPrice() {
         SoftAssert softAssert = new SoftAssert();
+        HashMap<String, String> itemInfo = new HashMap<>();
+
+        testLogin();
+        ProductScreenBase productScreen = initPage(ProductScreenBase.class);
+
+        for (int i = 1; i < 4; i++) {
+            String itemName = R.TESTDATA.get("item" + i);
+            itemInfo.put(itemName, productScreen.getCostByName(itemName));
+            productScreen.clickCartButtonByName(itemName);
+        }
+
         CartScreenBase cartScreenBase = initPage(ScreenHeaderBase.class).clickCheckoutButton();
         Assert.assertTrue(cartScreenBase.isOpened());
+
         for (int i = 1; i < 4; i++) {
             String itemName = R.TESTDATA.get("item" + i);
             softAssert.assertEquals(cartScreenBase.getCostByName(itemName), itemInfo.get(itemName), "Price mismatch: product screen vs cart screen for: " + itemName);
-            cartScreenBase.clickRemoveButton(itemName);
+            cartScreenBase.clickRemoveButtonByName(itemName);
         }
+
         softAssert.assertAll();
     }
 
-    @Test(dependsOnMethods = "testRemoveFromCartAndVerifyPrice")
+    @Test()
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testCheckout() {
+        testLogin();
+        initPage(ScreenHeaderBase.class).clickCheckoutButton();
         CartScreenBase cartScreenBase = initPage(CartScreenBase.class);
         CheckoutScreenBase checkoutScreen = cartScreenBase.clickCheckoutButton();
         checkoutScreen.typeFirstName("test");
@@ -102,12 +122,14 @@ public class AndroidTest implements IAbstractTest {
         Assert.assertTrue(orderConfirmationScreen.isThankyouMessagePresent(), "Thank you message not present");
     }
 
-    @Test(dependsOnMethods = "testCheckout")
+    @Test()
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testLogout() {
+        testLogin();
+
         HamburgerMenuScreenBase hamburgerMenuScreen = initPage(ScreenHeaderBase.class).clickHamburgerButton();
-        LoginScreen loginScreen = hamburgerMenuScreen.clickLogoutButton();
+        LoginScreenBase loginScreen = hamburgerMenuScreen.clickLogoutButton();
         Assert.assertTrue(loginScreen.isOpened(), "Home screen did not open");
     }
 

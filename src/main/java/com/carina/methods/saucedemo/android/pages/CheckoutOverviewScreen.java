@@ -36,17 +36,17 @@ public class CheckoutOverviewScreen extends CheckoutOverviewScreenBase {
     }
 
     @Override
-    public String getCost(String productName) {
+    public String getCostByName(String productName) {
         return productCost.format(productName).getText();
     }
 
     @Override
-    public void swipeProductLeft(String productName) {
+    public void swipeProductLeftByName(String productName) {
         swipeLeft(productTitle.format(productName), 1000);
     }
 
     @Override
-    public void clickExposedRemoveButton(String productName) {
+    public void clickExposedRemoveButtonByName(String productName) {
         hiddenRemoveButton.format(productName).click();
     }
 

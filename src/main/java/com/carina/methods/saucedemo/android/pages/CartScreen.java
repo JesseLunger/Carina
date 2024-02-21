@@ -45,7 +45,7 @@ public class CartScreen extends CartScreenBase {
     }
 
     @Override
-    public void clickRemoveButton(String productName) {
+    public void clickRemoveButtonByName(String productName) {
         swipe(removeButton.format(productName), 3);
         removeButton.format(productName).click();
     }
@@ -58,12 +58,12 @@ public class CartScreen extends CartScreenBase {
     }
 
     @Override
-    public void swipeProductLeft(String productName) {
+    public void swipeProductLeftByName(String productName) {
         swipeLeft(pageTitle.format(productName), 1000);
     }
 
     @Override
-    public void clickExposedRemoveButton(String productName) {
+    public void clickExposedRemoveButtonByName(String productName) {
         hiddenRemoveButton.format(productName).click();
     }
 }

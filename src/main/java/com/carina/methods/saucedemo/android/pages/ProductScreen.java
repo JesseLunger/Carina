@@ -46,26 +46,26 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public void clickCartButton(String productName){
+    public void clickCartButtonByName(String productName){
         swipe(addToCartButton.format(productName), 3);
         addToCartButton.format(productName).click();
     }
 
     @Override
-    public String getCost(String productName){
+    public String getCostByName(String productName){
         swipe(productCost.format(productName), 3);
         return productCost.format(productName).getText();
     }
 
     @Override
-    public ProductDetailsScreenBase clickProductImg(String productName) {
+    public ProductDetailsScreenBase clickProductImgByName(String productName) {
         swipe(productImg.format(productName), 3);
         productImg.click();
         return initPage(ProductDetailsScreenBase.class);
     }
 
     @Override
-    public String captureProductImage(String productName){
+    public String captureProductImageByName(String productName){
         swipe(productImg.format(productName));
         WebElement productImageElement = productImg.format(productName).getElement();
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES.BYTES);

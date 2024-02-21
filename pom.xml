@@ -142,8 +142,6 @@
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite1}.xml</suiteXmlFile>
-                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite2}.xml</suiteXmlFile>
-                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite3}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

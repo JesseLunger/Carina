@@ -10,12 +10,12 @@ public abstract class ProductScreenBase extends AbstractSauceDemoScreenBase {
 
     public abstract boolean isOpened();
 
-    public abstract void clickCartButton(String productName);
+    public abstract void clickCartButtonByName(String productName);
 
-    public abstract String getCost(String productName);
+    public abstract String getCostByName(String productName);
 
-    public abstract ProductDetailsScreenBase clickProductImg(String productName);
+    public abstract ProductDetailsScreenBase clickProductImgByName(String productName);
 
-    public abstract String captureProductImage(String productName);
+    public abstract String captureProductImageByName(String productName);
 
 }

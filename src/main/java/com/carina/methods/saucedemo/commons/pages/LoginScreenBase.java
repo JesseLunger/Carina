@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class LoginScreenBase extends AbstractSauceDemoScreenBase {
 
-
     public LoginScreenBase(WebDriver driver) {
         super(driver);
     }

@@ -13,4 +13,5 @@ public abstract class OrderConfirmationScreenBase extends AbstractSauceDemoScree
     public abstract ProductScreenBase clickBackToHomeButton();
 
     public abstract boolean isThankyouMessagePresent();
+
 }
