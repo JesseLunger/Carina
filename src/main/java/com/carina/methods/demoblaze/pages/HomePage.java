@@ -6,18 +6,22 @@ import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.decorator.annotations.Predicate;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class HomePage extends BasePage {
+public class HomePage extends AbstractPage {
 
     @FindBy(xpath = " //div [@id=\"navbarExample\"]")
     private Header header;
 
     @FindBy(xpath = "(//img[@src=\"imgs/sony_vaio_5.jpg\"])[2]")
     private ExtendedWebElement lastProductImg;
+
+    @FindBy(xpath = "//div[@class=\"carousel-item active\"]")
+    private ExtendedWebElement activeCarouselImg;
 
     @FindBy(xpath = "//div[@class='col-lg-4 col-md-6 mb-4']")
     private List<ProductItem> products;
@@ -30,12 +34,6 @@ public class HomePage extends BasePage {
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(lastProductImg);
         setPageAbsoluteURL(R.CONFIG.get("url"));
-
-    }
-
-    @Override
-    public boolean isOpened() {
-        return header.isStoreTitlePresent();
     }
 
     public Header getHeader(){

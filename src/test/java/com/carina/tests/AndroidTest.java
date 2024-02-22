@@ -1,6 +1,7 @@
 package com.carina.tests;
 
 import com.carina.methods.saucedemo.android.pages.*;
+import com.carina.methods.saucedemo.android.utils.AuthorizationUtil;
 import com.carina.methods.saucedemo.commons.components.ScreenHeaderBase;
 import com.carina.methods.saucedemo.commons.pages.*;
 import com.zebrunner.carina.core.IAbstractTest;
@@ -22,28 +23,22 @@ public class AndroidTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-
-
     @Test()
     @MethodOwner()
     @TestPriority(Priority.P1)
     public void testLogin() {
         LoginScreen loginScreen = new LoginScreen(getDriver());
-        loginScreen.typeUsername("standard_user");
-        loginScreen.typePassword("secret_sauce");
-        ProductScreenBase productScreen = loginScreen.clickLoginButton();
-        Assert.assertTrue(productScreen.isOpened(), "ProductScreen did not open");
+        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
     }
 
     @Test()
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P4)
     public void testImageData(){
-        //Test provided to prove an attempt was made to verify that the same images that were present in the product
-        //screen were also present in product details screen. The problem is both images have different resolutions.
-        //Furthermore, there is no unique identifier on the product description image that would allow for a wildcard
-        //xpath to verify image names were related.
-        testLogin();
+        LoginScreen loginScreen = new LoginScreen(getDriver());
+        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         ProductScreenBase productScreenBase = initPage(ProductScreenBase.class);
         String imageHashInProducts = productScreenBase.captureProductImageByName(R.TESTDATA.get("item1"));
@@ -60,8 +55,9 @@ public class AndroidTest implements IAbstractTest {
         SoftAssert softAssert = new SoftAssert();
         HashMap<String, String> itemInfo = new HashMap<>();
 
-        testLogin();
-        ProductScreenBase productScreen = initPage(ProductScreenBase.class);
+        LoginScreen loginScreen = new LoginScreen(getDriver());
+        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         for (int i = 1; i < 4; i++) {
             String itemName = R.TESTDATA.get("item" + i);
@@ -83,8 +79,9 @@ public class AndroidTest implements IAbstractTest {
         SoftAssert softAssert = new SoftAssert();
         HashMap<String, String> itemInfo = new HashMap<>();
 
-        testLogin();
-        ProductScreenBase productScreen = initPage(ProductScreenBase.class);
+        LoginScreen loginScreen = new LoginScreen(getDriver());
+        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         for (int i = 1; i < 4; i++) {
             String itemName = R.TESTDATA.get("item" + i);
@@ -108,7 +105,10 @@ public class AndroidTest implements IAbstractTest {
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testCheckout() {
-        testLogin();
+        LoginScreen loginScreen = new LoginScreen(getDriver());
+        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
+
         initPage(ScreenHeaderBase.class).clickCheckoutButton();
         CartScreenBase cartScreenBase = initPage(CartScreenBase.class);
         CheckoutScreenBase checkoutScreen = cartScreenBase.clickCheckoutButton();
@@ -126,11 +126,12 @@ public class AndroidTest implements IAbstractTest {
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testLogout() {
-        testLogin();
+        LoginScreen loginScreen = new LoginScreen(getDriver());
+        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         HamburgerMenuScreenBase hamburgerMenuScreen = initPage(ScreenHeaderBase.class).clickHamburgerButton();
-        LoginScreenBase loginScreen = hamburgerMenuScreen.clickLogoutButton();
+        hamburgerMenuScreen.clickLogoutButton();
         Assert.assertTrue(loginScreen.isOpened(), "Home screen did not open");
     }
-
 }

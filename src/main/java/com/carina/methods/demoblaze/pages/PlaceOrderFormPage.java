@@ -1,13 +1,12 @@
 package com.carina.methods.demoblaze.pages;
 
-import com.carina.methods.demoblaze.components.Header;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import org.kohsuke.rngom.parse.host.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class PlaceOrderFromPage extends BasePage {
+public class PlaceOrderFormPage extends AbstractPage {
 
     @FindBy(xpath = "//h5[@id=\"orderModalLabel\"]")
     private ExtendedWebElement pageTitle;
@@ -33,13 +32,10 @@ public class PlaceOrderFromPage extends BasePage {
     @FindBy(xpath = "//button[@onclick ='purchaseOrder()']")
     private ExtendedWebElement submitButton;
 
-    public PlaceOrderFromPage(WebDriver driver) {
+    public PlaceOrderFormPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    public boolean isOpened() {
-        return pageTitle.isPresent();
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(pageTitle);
     }
 
     public void typeName(String name) {

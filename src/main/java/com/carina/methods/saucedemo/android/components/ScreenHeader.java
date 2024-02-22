@@ -20,7 +20,6 @@ public class ScreenHeader extends ScreenHeaderBase {
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Cart']")
     private ExtendedWebElement checkoutButton;
 
-
     public ScreenHeader(WebDriver driver) {
         super(driver);
     }

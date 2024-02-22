@@ -13,54 +13,52 @@ import org.openqa.selenium.support.FindBy;
 public class Header extends AbstractUIObject {
 
     @FindBy(xpath = "//a[@id='nava']")
-    protected ExtendedWebElement storeTitle;
+    private ExtendedWebElement webLogo;
 
     @FindBy(xpath = "//a[contains(text(), 'Home')]")
-    private ExtendedWebElement homeHeaderOption;
+    private ExtendedWebElement homeHeaderLink;
 
     @FindBy(xpath = ".//a[@id='login2']")
-    protected ExtendedWebElement loginHeaderOption;
+    private ExtendedWebElement loginHeaderLink;
 
     @FindBy(xpath = ".//a [contains(text(), 'About us')]")
-    protected ExtendedWebElement aboutUsHeaderOption;
-
+    private ExtendedWebElement aboutUsHeaderLink;
 
     @FindBy(xpath = ".//a [@id= 'cartur']")
-    protected ExtendedWebElement cartHeaderOption;
+    private ExtendedWebElement cartHeaderLink;
 
     @FindBy(xpath = ".//a[@id='nameofuser']")
-    protected ExtendedWebElement headerUserGreeting;
+    private ExtendedWebElement UserGreetingMessage;
 
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
+    public String getUserName() {
+        return UserGreetingMessage.getText();
+    }
 
-    public LoginMenuPage clickSignIn() {
-        loginHeaderOption.click();
+    public LoginMenuPage clickSignInLink() {
+        loginHeaderLink.click();
         return new LoginMenuPage(getDriver());
     }
 
-    public AboutUsVideoPage clickAboutUs() {
-        aboutUsHeaderOption.click();
+    public AboutUsVideoPage clickAboutUsLink() {
+        aboutUsHeaderLink.click();
         return new AboutUsVideoPage(getDriver());
     }
 
-    public String getUserName() {
-        return headerUserGreeting.getText();
-    }
-
-    public CartPage clickCart() {
-        cartHeaderOption.click();
+    public CartPage clickCartLink() {
+        cartHeaderLink.click();
         return new CartPage(getDriver());
     }
 
-    public HomePage clickHome() {
-        homeHeaderOption.click();
+    public HomePage clickHomeLink() {
+        homeHeaderLink.click();
         return new HomePage(getDriver());
     }
 
     public boolean isStoreTitlePresent(){
-        return storeTitle.isPresent();
+        return webLogo.isPresent();
     }
 }

@@ -7,7 +7,7 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class ProductPage extends BasePage {
+public class ProductPage extends AbstractPage {
 
     @FindBy(xpath = " //div [@id=\"navbarExample\"]")
     private Header header;
@@ -21,20 +21,14 @@ public class ProductPage extends BasePage {
     public ProductPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(addToCartButton);
+        setUiLoadedMarker(productName);
     }
 
     public Header getHeader(){
         return header;
     }
 
-    @Override
-    public boolean isOpened() {
-        return productName.isPresent();
-    }
-
-    public void clickAddToCart() {
+    public void clickAddToCartButton() {
         addToCartButton.click();
     }
-
 }

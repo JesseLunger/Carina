@@ -8,7 +8,7 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginMenuPage extends BasePage {
+public class LoginMenuPage extends AbstractPage {
 
     @FindBy(xpath = "//h5[@id=\"signInModalLabel\"]")
     private ExtendedWebElement pageTitle;
@@ -28,12 +28,6 @@ public class LoginMenuPage extends BasePage {
         setUiLoadedMarker(usernameField);
         setPageAbsoluteURL(R.CONFIG.get("url"));
     }
-
-    @Override
-    public boolean isOpened() {
-        return pageTitle.isPresent();
-    }
-
 
     public void typeUsername(String username) {
         usernameField.type(username);

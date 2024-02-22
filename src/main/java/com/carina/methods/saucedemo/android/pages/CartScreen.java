@@ -28,7 +28,6 @@ public class CartScreen extends CartScreenBase {
     @FindBy(xpath = "//android.widget.TextView[@text='%s']/parent::*/parent::*/parent::*/parent::*//android.view.ViewGroup[@content-desc='test-Delete']")
     private ExtendedWebElement hiddenRemoveButton;
 
-
     public CartScreen(WebDriver driver) {
         super(driver);
     }

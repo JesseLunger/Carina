@@ -2,16 +2,17 @@ package com.carina.methods.demoblaze.pages;
 
 import com.carina.methods.demoblaze.components.Header;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.kohsuke.rngom.parse.host.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 
-public class AboutUsVideoPage extends BasePage {
+public class AboutUsVideoPage extends AbstractPage {
 
-    @FindBy(xpath = " //h5[@id=\"logInModalLabel\"]")
-    private ExtendedWebElement pageTitle;
+    @FindBy(xpath = "//h5 [@id=\"videoModalLabel\"]")
+    private ExtendedWebElement aboutUsLabel;
 
     @FindBy(xpath = "//button[@title='Play Video']")
     private ExtendedWebElement playButton;
@@ -21,11 +22,8 @@ public class AboutUsVideoPage extends BasePage {
 
     public AboutUsVideoPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    public boolean isOpened() {
-        return pageTitle.isPresent();
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(aboutUsLabel);
     }
 
     public void clickPlayButton() {

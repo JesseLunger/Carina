@@ -10,13 +10,13 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class CartPage extends BasePage {
+public class CartPage extends AbstractPage {
 
     @FindBy(xpath = " //div [@id=\"navbarExample\"]")
     private Header header;
 
     @FindBy(xpath = "//h2[contains(text(), \"Products\")]")
-    private ExtendedWebElement pageTitle;
+    private ExtendedWebElement productsLogo;
 
     @FindBy(xpath = "//h3[@id='totalp']")
     private ExtendedWebElement productTotal;
@@ -36,21 +36,16 @@ public class CartPage extends BasePage {
     public CartPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(cartItemImage);
-    }
-
-    @Override
-    public boolean isOpened() {
-        return pageTitle.isPresent();
+        setUiLoadedMarker(productsLogo);
     }
 
     public Header getHeader(){
         return header;
     }
 
-    public PlaceOrderFromPage clickPlaceOrder() {
+    public PlaceOrderFormPage clickPlaceOrder() {
         placeOrderButton.click();
-        return new PlaceOrderFromPage(getDriver());
+        return new PlaceOrderFormPage(getDriver());
     }
 
     public List<CartItem> getCartItems() {
