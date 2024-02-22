@@ -11,10 +11,10 @@ import org.openqa.selenium.support.FindBy;
 public class CartScreen extends CartScreenBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='YOUR CART']")
-    private ExtendedWebElement pageTitle;
+    private ExtendedWebElement yourCartPageTitle;
 
     @FindBy(xpath = "//android.widget.TextView[@text='%s']")
-    private ExtendedWebElement productTitle;
+    private ExtendedWebElement productName;
 
     @FindBy(xpath = "//android.widget.TextView[@text='%s']/parent::*/parent::*//android.widget.TextView[starts-with(@text, '$')]")
     private ExtendedWebElement productCost;
@@ -34,7 +34,7 @@ public class CartScreen extends CartScreenBase {
 
     @Override
     public boolean isOpened() {
-        return pageTitle.isPresent();
+        return yourCartPageTitle.isPresent();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class CartScreen extends CartScreenBase {
 
     @Override
     public void swipeProductLeftByName(String productName) {
-        swipeLeft(pageTitle.format(productName), 1000);
+        swipeLeft(yourCartPageTitle.format(productName), 1000);
     }
 
     @Override

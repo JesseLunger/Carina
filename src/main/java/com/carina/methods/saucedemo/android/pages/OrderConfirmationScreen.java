@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 public class OrderConfirmationScreen extends OrderConfirmationScreenBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='CHECKOUT: COMPLETE!']")
-    private ExtendedWebElement pageTitle;
+    private ExtendedWebElement CheckoutCompletePageTitle;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"THANK YOU FOR YOU ORDER\"]")
     private ExtendedWebElement thankYouMessage;
@@ -25,7 +25,7 @@ public class OrderConfirmationScreen extends OrderConfirmationScreenBase {
 
     @Override
     public boolean isOpened() {
-        return pageTitle.isPresent();
+        return CheckoutCompletePageTitle.isPresent();
     }
 
     @Override

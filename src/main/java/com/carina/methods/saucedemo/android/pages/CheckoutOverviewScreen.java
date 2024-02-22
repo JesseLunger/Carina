@@ -12,10 +12,10 @@ import org.openqa.selenium.support.FindBy;
 public class CheckoutOverviewScreen extends CheckoutOverviewScreenBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='CHECKOUT: OVERVIEW']")
-    private ExtendedWebElement pageTitle;
+    private ExtendedWebElement CheckoutOverviewPageTitle;
 
     @FindBy(xpath = "//android.widget.TextView[@text='%s']")
-    private ExtendedWebElement productTitle;
+    private ExtendedWebElement productName;
 
     @FindBy(xpath = "//android.widget.TextView[@text='%s']/parent::*/parent::*/parent::*//android.widget.TextView[starts-with(@text, '$')]")
     private ExtendedWebElement productCost;
@@ -32,7 +32,7 @@ public class CheckoutOverviewScreen extends CheckoutOverviewScreenBase {
 
     @Override
     public boolean isOpened() {
-        return pageTitle.isPresent();
+        return CheckoutOverviewPageTitle.isPresent();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CheckoutOverviewScreen extends CheckoutOverviewScreenBase {
 
     @Override
     public void swipeProductLeftByName(String productName) {
-        swipeLeft(productTitle.format(productName), 1000);
+        swipeLeft(this.productName.format(productName), 1000);
     }
 
     @Override

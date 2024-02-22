@@ -20,7 +20,7 @@ public class ProductScreen extends ProductScreenBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"PRODUCTS\"]")
-    private ExtendedWebElement pageTitle;
+    private ExtendedWebElement ProductsPageTitle;
 
     @FindBy(xpath = "//android.widget.TextView[@text='%s']/parent::*/parent::*//android.widget.TextView[@text='ADD TO CART']")
     private ExtendedWebElement addToCartButton;
@@ -37,7 +37,7 @@ public class ProductScreen extends ProductScreenBase {
 
     @Override
     public boolean isOpened() {
-        return pageTitle.isPresent();
+        return ProductsPageTitle.isPresent();
     }
 
     @Override

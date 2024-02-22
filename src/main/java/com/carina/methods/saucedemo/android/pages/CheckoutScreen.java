@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 public class CheckoutScreen extends CheckoutScreenBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='CHECKOUT: INFORMATION']")
-    private ExtendedWebElement pageTitle;
+    private ExtendedWebElement CheckoutInformationPageTitle;
 
     @FindBy(xpath = "//android.widget.EditText[@content-desc='test-First Name']")
     private ExtendedWebElement firstNameField;
@@ -31,7 +31,7 @@ public class CheckoutScreen extends CheckoutScreenBase {
 
     @Override
     public boolean isOpened() {
-        return pageTitle.isPresent();
+        return CheckoutInformationPageTitle.isPresent();
     }
 
     @Override
