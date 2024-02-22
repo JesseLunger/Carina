@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProductPage extends AbstractPage {
 
-    @FindBy(xpath = " //div [@id=\"navbarExample\"]")
-    private Header header;
-
     @FindBy(xpath = "//h2[@class='name']")
     private ExtendedWebElement productName;
 
-    @FindBy(xpath = "//a[@class='btn btn-success btn-lg']")
+    @FindBy(xpath = " //div [@id=\"navbarExample\"]")
+    private Header header;
+
+    @FindBy(xpath = "//a [contains(text(), \"Add to cart\")]")
     private ExtendedWebElement addToCartButton;
 
     public ProductPage(WebDriver driver) {
@@ -24,7 +24,7 @@ public class ProductPage extends AbstractPage {
         setUiLoadedMarker(productName);
     }
 
-    public Header getHeader(){
+    public Header getHeader() {
         return header;
     }
 

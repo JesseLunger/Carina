@@ -4,7 +4,6 @@ import com.carina.methods.saucedemo.commons.pages.CheckoutOverviewScreenBase;
 import com.carina.methods.saucedemo.commons.pages.CheckoutScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

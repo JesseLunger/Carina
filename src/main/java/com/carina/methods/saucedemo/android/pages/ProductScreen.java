@@ -1,22 +1,17 @@
 package com.carina.methods.saucedemo.android.pages;
 
-import com.carina.methods.saucedemo.commons.components.ScreenHeaderBase;
+import com.carina.methods.saucedemo.android.utils.ScreenMethods;
 import com.carina.methods.saucedemo.commons.pages.ProductDetailsScreenBase;
+import com.carina.methods.saucedemo.commons.pages.ProductScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import com.carina.methods.saucedemo.commons.pages.ProductScreenBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.lang.invoke.MethodHandles;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ProductScreenBase.class)
@@ -46,13 +41,13 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public void clickCartButtonByName(String productName){
+    public void clickCartButtonByName(String productName) {
         swipe(addToCartButton.format(productName), 3);
         addToCartButton.format(productName).click();
     }
 
     @Override
-    public String getCostByName(String productName){
+    public String getCostByName(String productName) {
         swipe(productCost.format(productName), 3);
         return productCost.format(productName).getText();
     }
@@ -65,17 +60,13 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public String captureProductImageByName(String productName){
+    public String captureProductImageByName(String productName) {
         swipe(productImg.format(productName));
         WebElement productImageElement = productImg.format(productName).getElement();
-        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES.BYTES);
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            byte[] hashedData = messageDigest.digest(screenshot);
-            return Base64.getEncoder().encodeToString(hashedData);
-        } catch (NoSuchAlgorithmException e){
-            LOGGER.debug(e.getMessage());
-            return null;
-        }
+        Point location = productImageElement.getLocation();
+        int width = productImageElement.getSize().getWidth();
+        int height = productImageElement.getSize().getHeight();
+        File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        return ScreenMethods.elementScreenShotHash(screenShot, location, width, height);
     }
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 public class PlaceOrderFormPage extends AbstractPage {
 
     @FindBy(xpath = "//h5[@id=\"orderModalLabel\"]")
-    private ExtendedWebElement pageTitle;
+    private ExtendedWebElement placeOrderPageTitle;
 
     @FindBy(xpath = "//input[@id='name']")
     private ExtendedWebElement nameField;
@@ -35,7 +35,7 @@ public class PlaceOrderFormPage extends AbstractPage {
     public PlaceOrderFormPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(pageTitle);
+        setUiLoadedMarker(placeOrderPageTitle);
     }
 
     public void typeName(String name) {

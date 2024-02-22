@@ -31,7 +31,7 @@ public class CheckoutOverviewScreen extends CheckoutOverviewScreenBase {
     }
 
     @Override
-    public boolean isOpened(){
+    public boolean isOpened() {
         return pageTitle.isPresent();
     }
 

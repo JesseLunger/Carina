@@ -34,7 +34,7 @@ public class WebTest implements IAbstractTest {
     }
 
     @Test
-    @MethodOwner(owner = "Jesse Lunger" )
+    @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testBuySingle() {
         HomePage homePage = new HomePage(getDriver());

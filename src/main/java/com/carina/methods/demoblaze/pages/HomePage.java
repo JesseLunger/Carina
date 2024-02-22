@@ -5,7 +5,6 @@ import com.carina.methods.demoblaze.components.ProductItem;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.decorator.annotations.Predicate;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -36,7 +35,7 @@ public class HomePage extends AbstractPage {
         setPageAbsoluteURL(R.CONFIG.get("url"));
     }
 
-    public Header getHeader(){
+    public Header getHeader() {
         return header;
     }
 

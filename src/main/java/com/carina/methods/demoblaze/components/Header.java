@@ -58,7 +58,7 @@ public class Header extends AbstractUIObject {
         return new HomePage(getDriver());
     }
 
-    public boolean isStoreTitlePresent(){
+    public boolean isStoreTitlePresent() {
         return webLogo.isPresent();
     }
 }

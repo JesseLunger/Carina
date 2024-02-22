@@ -1,6 +1,5 @@
 package com.carina.methods.saucedemo.commons.pages;
 
-import com.carina.methods.saucedemo.android.pages.CheckoutOverviewScreen;
 import org.openqa.selenium.WebDriver;
 
 public abstract class CheckoutScreenBase extends AbstractSauceDemoScreenBase {

@@ -1,7 +1,7 @@
 package com.carina.tests;
 
-import com.carina.methods.saucedemo.android.pages.*;
-import com.carina.methods.saucedemo.android.utils.AuthorizationUtil;
+import com.carina.methods.saucedemo.android.pages.LoginScreen;
+import com.carina.methods.saucedemo.android.utils.ScreenMethods;
 import com.carina.methods.saucedemo.commons.components.ScreenHeaderBase;
 import com.carina.methods.saucedemo.commons.pages.*;
 import com.zebrunner.carina.core.IAbstractTest;
@@ -28,16 +28,16 @@ public class AndroidTest implements IAbstractTest {
     @TestPriority(Priority.P1)
     public void testLogin() {
         LoginScreen loginScreen = new LoginScreen(getDriver());
-        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        ProductScreenBase productScreen = ScreenMethods.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
     }
 
     @Test()
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P4)
-    public void testImageData(){
+    public void testImageData() {
         LoginScreen loginScreen = new LoginScreen(getDriver());
-        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        ProductScreenBase productScreen = ScreenMethods.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         ProductScreenBase productScreenBase = initPage(ProductScreenBase.class);
@@ -56,7 +56,7 @@ public class AndroidTest implements IAbstractTest {
         HashMap<String, String> itemInfo = new HashMap<>();
 
         LoginScreen loginScreen = new LoginScreen(getDriver());
-        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        ProductScreenBase productScreen = ScreenMethods.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         for (int i = 1; i < 4; i++) {
@@ -65,7 +65,7 @@ public class AndroidTest implements IAbstractTest {
             productScreen.clickCartButtonByName(itemName);
 
             ProductDetailsScreenBase productDetailsScreenBase = productScreen.clickProductImgByName(itemName);
-            softAssert.assertEquals(productDetailsScreenBase.getPrice(), itemInfo.get(itemName),"Price mismatch product screen vs item description screen for: " + itemName);
+            softAssert.assertEquals(productDetailsScreenBase.getPrice(), itemInfo.get(itemName), "Price mismatch product screen vs item description screen for: " + itemName);
             productDetailsScreenBase.clickBackToProducts();
         }
 
@@ -80,7 +80,7 @@ public class AndroidTest implements IAbstractTest {
         HashMap<String, String> itemInfo = new HashMap<>();
 
         LoginScreen loginScreen = new LoginScreen(getDriver());
-        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        ProductScreenBase productScreen = ScreenMethods.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         for (int i = 1; i < 4; i++) {
@@ -105,8 +105,8 @@ public class AndroidTest implements IAbstractTest {
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testCheckout() {
-        LoginScreen loginScreen = new LoginScreen(getDriver());
-        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        LoginScreenBase loginScreen = initPage(LoginScreenBase.class);
+        ProductScreenBase productScreen = ScreenMethods.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         initPage(ScreenHeaderBase.class).clickCheckoutButton();
@@ -127,7 +127,7 @@ public class AndroidTest implements IAbstractTest {
     @TestPriority(Priority.P1)
     public void testLogout() {
         LoginScreen loginScreen = new LoginScreen(getDriver());
-        ProductScreenBase productScreen = AuthorizationUtil.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
+        ProductScreenBase productScreen = ScreenMethods.logIn(loginScreen, R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         HamburgerMenuScreenBase hamburgerMenuScreen = initPage(ScreenHeaderBase.class).clickHamburgerButton();

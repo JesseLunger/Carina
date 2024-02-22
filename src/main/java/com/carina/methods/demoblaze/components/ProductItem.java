@@ -26,7 +26,7 @@ public class ProductItem extends AbstractUIObject {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return productName.getText();
     }
 }

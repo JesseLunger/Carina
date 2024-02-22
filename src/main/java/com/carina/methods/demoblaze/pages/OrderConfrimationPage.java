@@ -1,6 +1,5 @@
 package com.carina.methods.demoblaze.pages;
 
-import com.carina.methods.demoblaze.components.Header;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;

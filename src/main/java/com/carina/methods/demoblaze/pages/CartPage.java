@@ -39,7 +39,7 @@ public class CartPage extends AbstractPage {
         setUiLoadedMarker(productsLogo);
     }
 
-    public Header getHeader(){
+    public Header getHeader() {
         return header;
     }
 
