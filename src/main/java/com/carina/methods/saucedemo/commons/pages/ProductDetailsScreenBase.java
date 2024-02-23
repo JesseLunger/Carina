@@ -14,6 +14,6 @@ public abstract class ProductDetailsScreenBase extends AbstractPage implements I
 
     public abstract ProductScreenBase clickBackToProducts();
 
-    public abstract String captureProductImage();
+    public abstract boolean isProductImagePresent();
 
 }

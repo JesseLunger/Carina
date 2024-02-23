@@ -16,6 +16,6 @@ public abstract class ProductScreenBase extends AbstractSauceDemoScreenBase {
 
     public abstract ProductDetailsScreenBase clickProductImgByName(String productName);
 
-    public abstract String captureProductImageByName(String productName);
+    public abstract boolean isProductImagePresentByName(String ImgName);
 
 }

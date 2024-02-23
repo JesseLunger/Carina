@@ -27,9 +27,4 @@ public class CartItem extends AbstractUIObject {
     public String getProductName() {
         return itemName.getText();
     }
-
-    @Override
-    public String toString() {
-        return itemName.getText();
-    }
 }

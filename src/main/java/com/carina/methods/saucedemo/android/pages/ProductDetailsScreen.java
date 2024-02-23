@@ -1,6 +1,6 @@
 package com.carina.methods.saucedemo.android.pages;
 
-import com.carina.methods.saucedemo.android.utils.ScreenMethods;
+import com.carina.methods.saucedemo.android.utils.AuthenticationUtil;
 import com.carina.methods.saucedemo.commons.pages.ProductDetailsScreenBase;
 import com.carina.methods.saucedemo.commons.pages.ProductScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -39,19 +39,15 @@ public class ProductDetailsScreen extends ProductDetailsScreenBase {
     }
 
     @Override
+    public boolean isProductImagePresent() {
+        return productImg.isPresent();
+    }
+
+    @Override
     public String getPrice() {
         swipe(productCost, 3);
         return productCost.getText();
     }
 
-    @Override
-    public String captureProductImage() {
-        swipe(productImg);
-        WebElement productImageElement = productImg.getElement();
-        Point location = productImageElement.getLocation();
-        int width = productImageElement.getSize().getWidth();
-        int height = productImageElement.getSize().getHeight();
-        File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        return ScreenMethods.elementScreenShotHash(screenShot, location, width, height);
-    }
+
 }

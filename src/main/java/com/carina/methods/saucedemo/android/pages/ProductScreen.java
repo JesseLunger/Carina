@@ -1,6 +1,6 @@
 package com.carina.methods.saucedemo.android.pages;
 
-import com.carina.methods.saucedemo.android.utils.ScreenMethods;
+import com.carina.methods.saucedemo.android.utils.AuthenticationUtil;
 import com.carina.methods.saucedemo.commons.pages.ProductDetailsScreenBase;
 import com.carina.methods.saucedemo.commons.pages.ProductScreenBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -60,13 +60,7 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public String captureProductImageByName(String productName) {
-        swipe(productImg.format(productName));
-        WebElement productImageElement = productImg.format(productName).getElement();
-        Point location = productImageElement.getLocation();
-        int width = productImageElement.getSize().getWidth();
-        int height = productImageElement.getSize().getHeight();
-        File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        return ScreenMethods.elementScreenShotHash(screenShot, location, width, height);
+    public boolean isProductImagePresentByName(String imgName) {
+        return productImg.format(imgName).isPresent();
     }
 }
