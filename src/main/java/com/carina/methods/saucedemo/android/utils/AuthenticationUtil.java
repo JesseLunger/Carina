@@ -24,17 +24,14 @@ public class AuthenticationUtil implements ICustomTypePageFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public ProductScreenBase logIn(String userName, String Password) {
+    public ProductScreenBase logIn(String userName, String password) {
         LoginScreenBase loginScreen = initPage(LoginScreenBase.class);
         loginScreen.typeUsername(userName);
-        loginScreen.typePassword(Password);
+        loginScreen.typePassword(password);
         return loginScreen.clickLoginButton();
     }
 
     public ProductScreenBase logInStandardUser(){
-        LoginScreenBase loginScreen = initPage(LoginScreenBase.class);
-        loginScreen.typeUsername(R.TESTDATA.get("android_user_name"));
-        loginScreen.typePassword(R.TESTDATA.get("android_password"));
-        return loginScreen.clickLoginButton();
+        return logIn(R.TESTDATA.get("android_user_name"), R.TESTDATA.get("android_password"));
     }
 }

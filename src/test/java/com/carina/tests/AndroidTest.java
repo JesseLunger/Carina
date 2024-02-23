@@ -1,5 +1,6 @@
 package com.carina.tests;
 
+import com.carina.methods.saucedemo.android.utils.AbstractMobileTest;
 import com.carina.methods.saucedemo.android.utils.AuthenticationUtil;
 import com.carina.methods.saucedemo.commons.components.ScreenHeaderBase;
 import com.carina.methods.saucedemo.commons.pages.*;
@@ -18,7 +19,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 
 
-public class AndroidTest implements IAbstractTest {
+public class AndroidTest extends AbstractMobileTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -26,7 +27,7 @@ public class AndroidTest implements IAbstractTest {
     @MethodOwner()
     @TestPriority(Priority.P1)
     public void testLogin() {
-        ProductScreenBase productScreen = new AuthenticationUtil().logInStandardUser();
+        ProductScreenBase productScreen = authenticationUtil.logInStandardUser();
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
     }
 
@@ -34,7 +35,7 @@ public class AndroidTest implements IAbstractTest {
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P4)
     public void testImageData() {
-        ProductScreenBase productScreen = new AuthenticationUtil().logInStandardUser();
+        ProductScreenBase productScreen = authenticationUtil.logInStandardUser();
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         ProductScreenBase productScreenBase = initPage(ProductScreenBase.class);
@@ -52,7 +53,7 @@ public class AndroidTest implements IAbstractTest {
         SoftAssert softAssert = new SoftAssert();
         HashMap<String, String> itemInfo = new HashMap<>();
 
-        ProductScreenBase productScreen = new AuthenticationUtil().logInStandardUser();
+        ProductScreenBase productScreen = authenticationUtil.logInStandardUser();
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         for (int i = 1; i < 4; i++) {
@@ -75,7 +76,7 @@ public class AndroidTest implements IAbstractTest {
         SoftAssert softAssert = new SoftAssert();
         HashMap<String, String> itemInfo = new HashMap<>();
 
-        ProductScreenBase productScreen = new AuthenticationUtil().logInStandardUser();
+        ProductScreenBase productScreen = authenticationUtil.logInStandardUser();
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         for (int i = 1; i < 4; i++) {
@@ -100,7 +101,7 @@ public class AndroidTest implements IAbstractTest {
     @MethodOwner(owner = "Jesse Lunger")
     @TestPriority(Priority.P1)
     public void testCheckout() {
-        ProductScreenBase productScreen = new AuthenticationUtil().logInStandardUser();
+        ProductScreenBase productScreen = authenticationUtil.logInStandardUser();
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         initPage(ScreenHeaderBase.class).clickCheckoutButton();
@@ -121,7 +122,9 @@ public class AndroidTest implements IAbstractTest {
     @TestPriority(Priority.P1)
     public void testLogout() {
         LoginScreenBase loginScreen = initPage(LoginScreenBase.class);
-        ProductScreenBase productScreen = new AuthenticationUtil().logInStandardUser();
+        Assert.assertTrue(loginScreen.isOpened(), "login screen is not opened");
+
+        ProductScreenBase productScreen = authenticationUtil.logInStandardUser();
         Assert.assertTrue(productScreen.isOpened(), "ProductScreen failed to open");
 
         HamburgerMenuScreenBase hamburgerMenuScreen = initPage(ScreenHeaderBase.class).clickHamburgerButton();
